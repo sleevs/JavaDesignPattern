@@ -3,37 +3,67 @@
   <component name="issues">
     <option name="index">
       <map>
-        <entry key="$PROJECT_DIR$/java-design-pattern/src/main/java/strategy/Cozinha.java">
+        <entry key="/a.dummy">
           <value>
             <set />
           </value>
         </entry>
-        <entry key="$PROJECT_DIR$/java-design-pattern/src/main/java/strategy/Delivery.java">
+        <entry key="$PROJECT_DIR$/src/main/java/br/com/jsn/observer/Cozinha.java">
           <value>
             <set />
           </value>
         </entry>
-        <entry key="$PROJECT_DIR$/java-design-pattern/src/main/java/strategy/Strategy.java">
+        <entry key="$PROJECT_DIR$/src/main/java/br/com/jsn/observer/Observer.java">
           <value>
             <set />
           </value>
         </entry>
-        <entry key="$PROJECT_DIR$/java-design-pattern/src/main/java/strategy/StrategyDemo">
+        <entry key="$PROJECT_DIR$/src/main/java/br/com/jsn/observer/ObserverDemo.java">
           <value>
             <set />
           </value>
         </entry>
-        <entry key="$PROJECT_DIR$/java-design-pattern/src/main/java/strategy/StrategyDemo.java">
+        <entry key="$PROJECT_DIR$/src/main/java/br/com/jsn/observer/Profissional.java">
           <value>
             <set />
           </value>
         </entry>
-        <entry key="$PROJECT_DIR$/java-design-pattern/src/main/java/strategy/StrategySearch.java">
+        <entry key="$PROJECT_DIR$/src/main/java/br/com/jsn/observer/Real.java">
           <value>
             <set />
           </value>
         </entry>
-        <entry key="$PROJECT_DIR$/java-design-pattern/src/main/java/strategy/StrategySolution.java">
+        <entry key="$PROJECT_DIR$/src/main/java/br/com/jsn/observer/Subject.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/br/com/jsn/strategy/Cozinha.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/br/com/jsn/strategy/Delivery.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/br/com/jsn/strategy/Strategy.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/br/com/jsn/strategy/StrategyDemo.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/br/com/jsn/strategy/StrategySearch.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/br/com/jsn/strategy/StrategySolution.java">
           <value>
             <set />
           </value>
