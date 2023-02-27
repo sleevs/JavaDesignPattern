@@ -7,7 +7,9 @@
   
   -  Abstract factory  
   
-  -  Builder - 
+  -  Builder 
+     
+     [The example is a notification application which defines several ways to notify.](https://github.com/sleevs/JavaDesignPattern/tree/master/jsn-builder)
   
   -  Prototype - 
   
