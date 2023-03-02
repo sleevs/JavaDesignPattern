@@ -3,7 +3,10 @@
 
 ### Creational patterns
 
-  -  Factory - 
+  -  Factory 
+      
+      [In this example was builded a logger framework which register event of application.](https://github.com/sleevs/JavaDesignPattern/tree/master/jsn-factory-method) 
+  
   
   -  Abstract factory  
   
