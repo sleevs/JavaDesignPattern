@@ -14,7 +14,9 @@
      
      [The example is a notification application which defines several ways to notify.](https://github.com/sleevs/JavaDesignPattern/tree/master/jsn-builder)
   
-  -  Prototype - 
+  -  Prototype 
+   
+     [This is example of catalog of marketing place application.](https://github.com/sleevs/JavaDesignPattern/tree/master/jsn-prototype)
   
   -  Singleton - 
 
