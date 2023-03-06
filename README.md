@@ -1,5 +1,5 @@
 
-## Demonstration of using Design Pattern with Java .
+## Demonstration of Design Pattern with Java 
 
 ### Creational patterns
 
