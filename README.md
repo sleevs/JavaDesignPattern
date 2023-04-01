@@ -5,7 +5,7 @@
 
   -  Factory 
       
-      [In this example was builded a logger framework which register event of application.](https://github.com/sleevs/JavaDesignPattern/tree/master/jsn-factory-method) 
+      [In this example a logistic application was built  which implements a fare calculator.](https://github.com/sleevs/JavaDesignPattern/tree/master/jsn-factory-method) 
   
   
   -  Abstract factory  
