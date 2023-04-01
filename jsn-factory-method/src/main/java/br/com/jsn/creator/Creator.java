@@ -1,16 +1,17 @@
 package br.com.jsn.creator;
 
-import br.com.jsn.product.ProductLog;
+import br.com.jsn.product.Product;
+
 
 public abstract class Creator {
 
 
-    public abstract ProductLog factoryMethod();
+    public abstract Product  factoryMethod();
 
 
-    public String operation(){
-        ProductLog productLog = this.factoryMethod();
-        String result = "CREATOR " + productLog.action() ;
+    public String operation(String o , String d){
+        Product product = this.factoryMethod();
+        String result = "CREATOR " + product.action(o , d) ;
         return result ;
     }
 }
