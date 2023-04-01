@@ -3,7 +3,7 @@
 
 ### Creational patterns
 
-  -  Factory 
+  -  Factory Method 
       
       [In this example a logistic application was built  which implements a fare calculator.](https://github.com/sleevs/JavaDesignPattern/tree/master/jsn-factory-method) 
   
