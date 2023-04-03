@@ -18,42 +18,42 @@
    
      [This is example of catalog of marketing place application.](https://github.com/sleevs/JavaDesignPattern/tree/master/jsn-prototype)
   
-  -  Singleton - 
+  -  Singleton - TODO
 
 ### Structural patterns
 
-  -  Adapter - 
+  -  Adapter - TODO
   
-  -  Bridge - 
+  -  Bridge - TODO
   
-  -  Composite - 
+  -  Composite - TODO
   
-  -  Decorator - 
+  -  Decorator - TODO
   
-  -  Facade - 
+  -  Facade - TODO
   
-  -  Flyweight - 
+  -  Flyweight - TODO
   
-  -  Proxy - 
+  -  Proxy - TODO
 
 ### Behavioral patterns
 
   -  Chain of responsibility - 
   
-  -  Command - 
+  -  Command - TODO
   
-  -  Iterator - 
+  -  Iterator - TODO
   
-  -  Mediator - 
+  -  Mediator - TODO
   
-  -  Memento - 
+  -  Memento - TODO
   
-  -  Observer - 
+  -  Observer - TODO
   
-  -  State - 
+  -  State - TODO
   
-  -  Strategy - 
+  -  Strategy - TODO
   
-  -  Template method - 
+  -  Template method - TODO
   
-  -  Visitor - 
+  -  Visitor - TODO
