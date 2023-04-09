@@ -2,7 +2,6 @@ package br.com.jsn.service;
 
 
 import br.com.jsn.model.CoordinateModel;
-import org.springframework.stereotype.Service;
 
 public class ShippingCalculator {
 

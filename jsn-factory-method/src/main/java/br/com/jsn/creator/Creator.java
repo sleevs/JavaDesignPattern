@@ -1,6 +1,5 @@
 package br.com.jsn.creator;
 
-import br.com.jsn.model.CoordinateModel;
 import br.com.jsn.product.Product;
 
 
