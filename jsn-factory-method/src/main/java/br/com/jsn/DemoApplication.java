@@ -30,12 +30,11 @@ import java.util.Map;
 @SpringBootApplication
 public class DemoApplication {
 
-	private static final String URL_CEP = "https://viacep.com.br/ws/{CEP}/json/";
-	private static final String URL_GEOCODE = "https://geocode.maps.co/search?q={address}";
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);
 
 
+		/*
 		DemoApplication demoApplication = new DemoApplication();
 
 		ShippingCalculator shippingCalculator = new ShippingCalculator();
@@ -72,50 +71,15 @@ public class DemoApplication {
 		System.out.println("==============calculo ========\n");
 		System.out.println(shippingCalculator.calcularDistancia(o, d));
 
-	}
 
-
-
-
-	private void getCep(String cep){
-
-
-		RestTemplate restTemplate = new RestTemplate();
-		Map<String ,String> param = new HashMap<String ,String>();
-		param.put("CEP",cep);
-		Address result = restTemplate.getForObject(URL_CEP , Address.class ,param);
-
-		System.out.println(result);
-	}
-
-
-
-	private CoordinateModel getCoord(String endereco){
-
-		RestTemplate restTemplate = new RestTemplate();
-		Map<String ,String> param = new HashMap<String ,String>();
-		param.put("address",endereco);
-		String result = restTemplate.getForObject(URL_GEOCODE , String.class ,param);
-
-
-		ObjectMapper mapper = new ObjectMapper();
-		CoordinateModel model = new CoordinateModel();
-		try {
-
-			mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-			List<GeocodeModel> geo = mapper.readValue(result , new TypeReference<List<GeocodeModel>>() {});
-
-			model.setLat(Double.parseDouble(geo.get(0).getLat()));
-			model.setLon(Double.parseDouble(geo.get(0).getLon()));
-		} catch (JsonProcessingException e) {
-			throw new RuntimeException(e);
-		}
-
-
-		return model ;
-
+		 */
 
 	}
+
+
+
+
+
 
 
 
