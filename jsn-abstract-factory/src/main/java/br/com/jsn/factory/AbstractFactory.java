@@ -1,14 +1,11 @@
 package br.com.jsn.factory;
 
-import br.com.jsn.product.AbstracProductWindow;
-import br.com.jsn.product.AbstractProductLocation;
-import br.com.jsn.product.AbstractProductMenu;
 
+import br.com.jsn.product.AbstractProductPayment;
 
 public abstract  class AbstractFactory {
 
-    public abstract AbstracProductWindow createWindow() ;
-    public abstract AbstractProductMenu createMenu();
-    public abstract AbstractProductLocation createLocation();
+   public abstract  AbstractProductPayment createPayment();
+
 
 }
