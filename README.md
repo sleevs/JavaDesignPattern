@@ -40,7 +40,7 @@
 
 ### Behavioral patterns
 
-  -  Chain of responsibility - 
+  -  Chain of responsibility - TODO
   
   -  Command - TODO
   
