@@ -1,5 +1,13 @@
 
-## Demonstration of Design Pattern with Java 
+## Demonstration of Design Pattern implelemnted in Java 
+
+Design pattern are beneficial because they describe a problem that occurs repeatedly
+and explain the solution to the problem in a way that can be used many time over.
+
+The study of patterns can inspire designes to come up with new and unique ideas
+and format captures knowledge and documents best practices for a domain. 
+
+Pattern are not the silver bullet but they can be combined and used in concert to solve large problems that cannot be solved with just one pattern .
 
 ### Creational patterns
 
