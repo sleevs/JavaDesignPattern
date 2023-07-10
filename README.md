@@ -48,6 +48,8 @@ Pattern are not the silver bullet but they can be combined and used in concert t
 
 ### Behavioral patterns
 
+  -  Interpreter - TODO
+     
   -  Chain of responsibility - TODO
   
   -  Command - TODO
