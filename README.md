@@ -57,6 +57,10 @@ Pattern are not the silver bullet but they can be combined and used in concert t
   -  Iterator - TODO
   
   -  Mediator - TODO
+
+     [This is a example of implementation of Mediator Pattern to solution of a Chat App with Server Push Technology.](https://github.com/sleevs/JavaDesignPattern)
+
+    
   
   -  Memento - TODO
   
