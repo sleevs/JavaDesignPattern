@@ -52,7 +52,7 @@ Pattern are not the silver bullet but they can be combined and used in concert t
      
   -  Chain of responsibility - TODO
   
-  -  Command - TODO
+  -  Command - DONE
   
       [This is a example of implementation of Command Pattern as component for a solution to a microservice in distributed transactions.](https://github.com/sleevs/Saga-Pattern)
   
