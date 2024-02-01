@@ -36,7 +36,7 @@ Pattern are not the silver bullet but they can be combined and used in concert t
   
   -  Bridge - TODO
   
-  -  Composite - TODO
+  -  Composite - DOING
   
   -  Decorator - TODO
   
