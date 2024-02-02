@@ -37,7 +37,5 @@ public class DeliveryDTO {
     public String toString() {
         return "DeliveryDTO [date=" + date + ", description=" + description + ", validation=" + validation + "]";
     }
-
-      
     
 }
