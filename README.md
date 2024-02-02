@@ -36,7 +36,10 @@ Pattern are not the silver bullet but they can be combined and used in concert t
   
   -  Bridge - TODO
   
-  -  Composite - TODO
+  -  Composite - DOING
+
+     [Demo of an app to manager project in which different tasks process and employees be elements of a composite that can be represented a project structure.](https://github.com/sleevs/JavaDesignPattern/tree/master/jsn-composite) 
+
   
   -  Decorator - TODO
   
@@ -52,7 +55,9 @@ Pattern are not the silver bullet but they can be combined and used in concert t
      
   -  Chain of responsibility - TODO
   
-  -  Command - TODO
+  -  Command - DONE
+  
+      [This is a example of implementation of Command Pattern as component for a solution to a microservice in distributed transactions.](https://github.com/sleevs/Saga-Pattern)
   
   -  Iterator - TODO
   
