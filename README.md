@@ -69,7 +69,10 @@ Pattern are not the silver bullet but they can be combined and used in concert t
   
   -  Memento - TODO
   
-  -  Observer - TODO
+  -  Observer - DOING 
+
+      [This is a example of implementation of Observer Pattern to Job app which job recruiter receive notification about news professionals resumes and Professionals receive notification about news opportunities of job.](https://github.com/sleevs/JavaDesignPattern/tree/master/jsn-observer)
+
   
   -  State - TODO
   
