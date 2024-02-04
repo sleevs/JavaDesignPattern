@@ -16,8 +16,8 @@ class JsnObserverApplicationTests {
 
 
 
-	   @Test
-        @DisplayName("Should not be null")
+	   	@Test
+        @DisplayName("create a simple processo and should not be null")
         void createJobProcess() {
 			JobDTO job = new JobDTO("Construction Worker", "Followed blueprints and plans to complete construction projects on time and under budget.");
 
