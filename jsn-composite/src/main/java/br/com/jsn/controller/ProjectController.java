@@ -19,6 +19,7 @@ import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 
 
@@ -48,62 +49,104 @@ public class ProjectController {
      * 
     */
 
+
+    /*
+
+ FRAMEWORK 
+ 
+ 
+ DEFINE
+ ------------------
+ PROBLEM  : 
+                 is your customer :
+                 - person or organiation who want make a service
+ 		 is everyone  ?  professional x  person or organiation
+ 		 a segment ?
+                 - service 
+                Urgent ? 
+                  - Relative to other needs
+                                - priority , which determines resources allocated 
+                                - priority , choices consumer have to spend their money 
+ 		
+   
+ NEED	  :	B2C
+ SOLUTION :
+ IDEA     :
+
+
+EVALUATE	
+ ------------------
+ GAIN     : Demostration
+ PAIN	  : 	
+ SOLUTION :
+ IDEA     :
+
+
+
+ BUILD
+ ------------------
+ VALUE    :
+ PROP	  :	
+ 
+     * 
+     * 
+    */
+
+    @PostMapping("/task")
+     public ResponseEntity<Object> createTask(){
+
+        /*scenario
+         * give
+         * when
+         * then
+        */
+
+        return ResponseEntity.ok("");
+     }
+
+     @PostMapping("/professional")
+     public ResponseEntity<Object> createProfessional(){
+
+        return ResponseEntity.ok("");
+     }
+
+     @PostMapping("/analyze")
+     public ResponseEntity<Object> createAnalyze(){
+
+        return ResponseEntity.ok("");
+     }
+
+     @PostMapping("/action")
+     public ResponseEntity<Object> createAction(){
+
+        return ResponseEntity.ok("");
+     }
+
+
+     @PostMapping("/delivery")
+     public ResponseEntity<Object> createDelivery(){
+
+        return ResponseEntity.ok("");
+     }
+
+
+     @PostMapping("/stop")
+     public ResponseEntity<Object> stopProject(){
+
+        return ResponseEntity.ok("");
+     }
+
+     @PostMapping("/cancel")
+     public ResponseEntity<Object> cancelProject(){
+
+        return ResponseEntity.ok("");
+     }
+
      @GetMapping("/test")
      public ResponseEntity<Object> createProject(){
+     
        
-        TaskDTO task = new TaskDTO();
-        task.setDescription("I need a professional for paint my home");
-        task.setRequirements("good knowledge with paint");
-        task.setFunctional("Painter");
-
-        EmployeeDTO employeeDTO = new EmployeeDTO();
-        employeeDTO.setEmail("mineiro@gmail.com");
-        employeeDTO.setExperience("20 years");
-        employeeDTO.setPhone("21984456632");
-        employeeDTO.setSkills("Pinter and Decorator");
-        employeeDTO.setType("Professional");
-        employeeDTO.setName("Mineiro");
-
-        AnalyzeDTO analyzeDTO = new AnalyzeDTO();
-        analyzeDTO.setComplexity("LOW");
-        analyzeDTO.setCost("$180.00");
-        analyzeDTO.setObjective("Painter the chiken");
-        analyzeDTO.setTime("10 days");
-        analyzeDTO.setValue("$100.00");
-
-        ActionDTO actionDTO = new ActionDTO();
-        actionDTO.setObjective("Paint and Decorate");
-        actionDTO.setResource("MagicWall Chalkboard Paint Light Tint Base 1 Liter");
-        actionDTO.setEnd("monday 02-26-2024");
-        actionDTO.setStart("tuesday 02-13-2024");
-        List<String> itens = new ArrayList<>();
-        itens.add("Pressure-Wash Walls");
-        itens.add("Repair Damaged Surfaces");
-        itens.add("Caulk Trim");
-        itens.add("Paint");
-        itens.add("Clean up");
-        actionDTO.setItens(itens);
-
-        DeliveryDTO deliveryDTO = new DeliveryDTO();
-        deliveryDTO.setDate("02-26-2024");
-        
-        
-
-
-        Project project =new Project("Paint");
-        TaskService taskService = new TaskService(task);
-        EmployeeService employeeService = new EmployeeService(employeeDTO);
-        AnalyzeService anAnalyzeService = new AnalyzeService(analyzeDTO);
-        ActionService actionService = new ActionService(actionDTO);
-        DeliveryService deliveryService = new DeliveryService(deliveryDTO);
-
-        project.add(taskService);
-        project.add(employeeService);
-        project.add(anAnalyzeService);
-        project.add(actionService);
-        project.add(deliveryService);
-       
-       return ResponseEntity.ok(project.display());
+       return ResponseEntity.ok("");
     }
     
 }
