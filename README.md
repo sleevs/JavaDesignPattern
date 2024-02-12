@@ -38,7 +38,7 @@ Pattern are not the silver bullet but they can be combined and used in concert t
   
   -  Composite - DOING
 
-     [Demo of an app to manager project in which different tasks process and employees be elements of a composite that can be represented a project structure.](https://github.com/sleevs/JavaDesignPattern/tree/master/jsn-composite) 
+     [Demo of an app to manager project in which different tasks process and employees as elements of a Composite Pattern that can be represented a project structure.](https://github.com/sleevs/JavaDesignPattern/tree/master/jsn-composite) 
 
   
   -  Decorator - TODO
