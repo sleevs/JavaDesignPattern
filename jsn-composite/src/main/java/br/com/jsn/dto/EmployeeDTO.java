@@ -10,6 +10,18 @@ public class EmployeeDTO {
     private String experience;
     private String certification;
 
+    
+    public EmployeeDTO(String name, String type, String email, String phone, String skills, String experience,
+            String certification) {
+        this.name = name;
+        this.type = type;
+        this.email = email;
+        this.phone = phone;
+        this.skills = skills;
+        this.experience = experience;
+        this.certification = certification;
+    }
+
 
     public EmployeeDTO(){}
 

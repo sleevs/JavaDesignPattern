@@ -1,5 +1,7 @@
 package br.com.jsn.dto;
 
+import java.util.List;
+
 public class AnalyzeDTO {
 
     private String objective;
@@ -8,6 +10,10 @@ public class AnalyzeDTO {
     private String time;
     private String complexity;
     private String priority;
+    private EmployeeDTO analyst ;
+    private TaskDTO task ;
+    private String status;
+    private List<String> resource ;
 
     public AnalyzeDTO(){}
 
@@ -59,11 +65,52 @@ public class AnalyzeDTO {
         this.priority = priority;
     }
 
+    public EmployeeDTO getAnalyst() {
+        return analyst;
+    }
+
+    public void setAnalyst(EmployeeDTO analyst) {
+        this.analyst = analyst;
+    }
+
+    public TaskDTO getTask() {
+        return task;
+    }
+
+    public void setTask(TaskDTO task) {
+        this.task = task;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public List<String> getResource() {
+        return resource;
+    }
+
+    public void setResource(List<String> resource) {
+        this.resource = resource;
+    }
+
     @Override
     public String toString() {
         return "AnalyzeDTO [objective=" + objective + ", value=" + value + ", cost=" + cost + ", time=" + time
-                + ", complexity=" + complexity + ", priority=" + priority + "]";
+                + ", complexity=" + complexity + ", priority=" + priority + ", analyst=" + analyst + ", task=" + task
+                + ", status=" + status + ", resource=" + resource + "]";
     }
+
+   
+    
+
+    
+    
+
+    
 
     
     
