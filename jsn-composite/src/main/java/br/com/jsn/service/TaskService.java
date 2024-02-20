@@ -1,14 +1,18 @@
 package br.com.jsn.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.jsn.dto.TaskDTO;
 import br.com.jsn.entity.TaskEntity;
+import br.com.jsn.repository.TaskRepository;
 
 @Service
 public class TaskService implements CrudService<TaskEntity>{
 
 
+    @Autowired
+    private TaskRepository taskRepository;
     //
     //
 
