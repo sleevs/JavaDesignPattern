@@ -2,21 +2,9 @@ package br.com.jsn.controller;
 
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.jsn.composite.ActionElementService;
-import br.com.jsn.composite.AnalyzeElementService;
-import br.com.jsn.composite.DeliveryElementService;
-import br.com.jsn.composite.EmployeeElementService;
-import br.com.jsn.composite.ProjectComposite;
-import br.com.jsn.composite.TaskElementService;
-import br.com.jsn.dto.ActionDTO;
-import br.com.jsn.dto.AnalyzeDTO;
-import br.com.jsn.dto.DeliveryDTO;
-import br.com.jsn.dto.EmployeeDTO;
-import br.com.jsn.dto.TaskDTO;
+import br.com.jsn.service.EmployeeService;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -91,6 +79,9 @@ EVALUATE
      * 
      * 
     */
+
+    @Autowired
+    private EmployeeService employeeService;
 
     @PostMapping("/task")
      public ResponseEntity<Object> createTask(){

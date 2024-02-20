@@ -1,70 +1,98 @@
 package br.com.jsn.entity;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name="employee")
 public class EmployeeEntity {
-    private String name;
-    private String type;
-    private String email;
-    private String phone;
-    private String skills;
-    private String experience;
-    private String certification;
+
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)    
+    private Long employeeId;
+    @Column(name="employee_name")
+    private String employeeName;
+    @Column(name="employee_type")
+    private String employeeType;
+    @Column(name="employee_email")
+    private String employeeEmail;
+    @Column(name="employee_phone")
+    private String employeePhone;
+    @Column(name="employee_skill")
+    private String employeeSkills;
+    @Column(name="employee_experience")
+    private String employeeExperience;
+    @Column(name="employee_certification")
+    private String employeeCertification;
 
     public EmployeeEntity(){}
 
-    public String getName() {
-        return name;
+    public Long getEmployeeId() {
+        return employeeId;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setEmployeeId(Long employeeId) {
+        this.employeeId = employeeId;
     }
 
-    public String getType() {
-        return type;
+    public String getEmployeeName() {
+        return employeeName;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setEmployeeName(String employeeName) {
+        this.employeeName = employeeName;
     }
 
-    public String getEmail() {
-        return email;
+    public String getEmployeeType() {
+        return employeeType;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setEmployeeType(String employeeType) {
+        this.employeeType = employeeType;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getEmployeeEmail() {
+        return employeeEmail;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setEmployeeEmail(String employeeEmail) {
+        this.employeeEmail = employeeEmail;
     }
 
-    public String getSkills() {
-        return skills;
+    public String getEmployeePhone() {
+        return employeePhone;
     }
 
-    public void setSkills(String skills) {
-        this.skills = skills;
+    public void setEmployeePhone(String employeePhone) {
+        this.employeePhone = employeePhone;
     }
 
-    public String getExperience() {
-        return experience;
+    public String getEmployeeSkills() {
+        return employeeSkills;
     }
 
-    public void setExperience(String experience) {
-        this.experience = experience;
+    public void setEmployeeSkills(String employeeSkills) {
+        this.employeeSkills = employeeSkills;
     }
 
-    public String getCertification() {
-        return certification;
+    public String getEmployeeExperience() {
+        return employeeExperience;
     }
 
-    public void setCertification(String certification) {
-        this.certification = certification;
+    public void setEmployeeExperience(String employeeExperience) {
+        this.employeeExperience = employeeExperience;
+    }
+
+    public String getEmployeeCertification() {
+        return employeeCertification;
+    }
+
+    public void setEmployeeCertification(String employeeCertification) {
+        this.employeeCertification = employeeCertification;
     }
 
     
