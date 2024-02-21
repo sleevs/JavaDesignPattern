@@ -2,6 +2,7 @@ package br.com.jsn.dto;
 
 public class EmployeeDTO {
 
+    private Long id;
     private String name;
     private String type;
     private String email;
@@ -96,11 +97,17 @@ public class EmployeeDTO {
     }
 
 
-    @Override
-    public String toString() {
-        return "EmployeeDTO [name=" + name + ", type=" + type + ", email=" + email + ", phone=" + phone + ", skills="
-                + skills + ", experience=" + experience + ", certification=" + certification + "]";
+    public Long getId() {
+        return id;
     }
+
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+
+    
 
     
 }

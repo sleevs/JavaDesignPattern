@@ -2,12 +2,23 @@ package br.com.jsn.controller;
 
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.jsn.composite.ManagerComposite;
+import br.com.jsn.composite.TaskElement;
+import br.com.jsn.dto.AnalystDTO;
+import br.com.jsn.dto.ProjectDTO;
+import br.com.jsn.dto.ProjectRequestDTO;
+import br.com.jsn.dto.TaskDTO;
 import br.com.jsn.service.EmployeeService;
+import br.com.jsn.service.ProjectService;
+import br.com.jsn.service.TaskService;
+
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 
 
@@ -82,9 +93,46 @@ EVALUATE
 
     @Autowired
     private EmployeeService employeeService;
+    @Autowired
+    private TaskService taskService;
+    @Autowired
+    private ProjectService projectService;
 
-    @PostMapping("/task")
-     public ResponseEntity<Object> createTask(){
+
+    @PostMapping("/project")
+     public ResponseEntity<Object> createProject(@RequestBody ProjectRequestDTO requestDTO){
+
+        /*scenario cliente inicia projeto
+
+         * give cliente cria uma task para projeto 
+         * then enviar para analise de um profissional
+         * when profissional visualizar reponder com analise 
+        */
+         System.out.println(requestDTO.toString());
+      
+         return ResponseEntity.ok(projectService.createProject(requestDTO));
+   
+       
+
+        
+     }
+
+
+     @PostMapping("/stop")
+     public ResponseEntity<Object> stopProject(){
+
+        return ResponseEntity.ok("");
+     }
+
+     @PostMapping("/cancel")
+     public ResponseEntity<Object> cancelProject(){
+
+        return ResponseEntity.ok("");
+     }
+
+
+     @PostMapping("/task")
+     public ResponseEntity<Object> addTask(){
 
         /*scenario cliente inicia projeto
 
@@ -93,7 +141,15 @@ EVALUATE
          * when profissional visualizar reponder com analise 
         */
 
+        
+
         return ResponseEntity.ok("");
+     }
+
+     @PostMapping("/send")
+     public ResponseEntity<Object> searchAnalyst(@RequestBody ProjectDTO projectDto){
+
+      return ResponseEntity.ok(projectService.sendTaskToEmployees(projectDto));
      }
 
      @PostMapping("/professional")
@@ -109,8 +165,8 @@ EVALUATE
         return ResponseEntity.ok("");
      }
 
-     @PostMapping("/analyze")
-     public ResponseEntity<Object> createAnalyze(){
+     @PostMapping("/analyst")
+     public ResponseEntity<Object> createAnalyze(@RequestBody AnalystDTO dto){
 
 
          /*scenario cliente recebe 0 or N analizes de orçamento
@@ -120,7 +176,7 @@ EVALUATE
          * when retornar para o projeto aceite/recusa
         */
 
-        return ResponseEntity.ok("");
+        return ResponseEntity.ok(projectService.analysisOfTask(dto));
      }
 
      @PostMapping("/action")
@@ -153,23 +209,5 @@ EVALUATE
      }
 
 
-     @PostMapping("/stop")
-     public ResponseEntity<Object> stopProject(){
-
-        return ResponseEntity.ok("");
-     }
-
-     @PostMapping("/cancel")
-     public ResponseEntity<Object> cancelProject(){
-
-        return ResponseEntity.ok("");
-     }
-
-     @GetMapping("/test")
-     public ResponseEntity<Object> createProject(){
-     
-       
-       return ResponseEntity.ok("");
-    }
     
 }

@@ -13,7 +13,7 @@ public class TaskEntity {
 
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)    
+    @GeneratedValue(strategy=GenerationType.IDENTITY)    
     private Long taskId;
     @Column(name="task_description")
     private String description;
@@ -21,6 +21,10 @@ public class TaskEntity {
     private String functional ;
     @Column(name="task_requirements")
     private String requirements ;
+    @Column(name="project_id")
+    private Long project ;
+    @Column(name="task_type")
+    private String taskType ;
 
 
     public TaskEntity(){}
@@ -65,6 +69,28 @@ public class TaskEntity {
         this.requirements = requirements;
     }
 
+
+    public Long getProject() {
+        return project;
+    }
+
+
+    public void setProject(Long project) {
+        this.project = project;
+    }
+
+
+    public String getTaskType() {
+        return taskType;
+    }
+
+
+    public void setTaskType(String taskType) {
+        this.taskType = taskType;
+    }
+
+    
+    
     
     
 }

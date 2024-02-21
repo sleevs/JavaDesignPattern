@@ -1,10 +1,15 @@
 package br.com.jsn.dto;
 
-public class TaskDTO {
+import br.com.jsn.composite.ManagerComponent;
 
+public class TaskDTO {  
+
+    private Long id;
+    private Long project;
     private String description;
     private String functional ;
     private String requirements ;
+    private String type ;
 
     public TaskDTO(){
 
@@ -34,12 +39,33 @@ public class TaskDTO {
         this.requirements = requirements;
     }
 
-    @Override
-    public String toString() {
-        return "TaskDTO [description=" + description + ", functional=" + functional + ", requirements=" + requirements
-                + "]";
+    public Long getProject() {
+        return project;
     }
 
+    public void setProject(Long project) {
+        this.project = project;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    
+
+    
     
     
 }

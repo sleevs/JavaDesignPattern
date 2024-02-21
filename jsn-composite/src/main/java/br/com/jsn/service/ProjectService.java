@@ -1,27 +1,39 @@
 package br.com.jsn.service;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Service;
 
-import br.com.jsn.composite.ActionElementService;
-import br.com.jsn.composite.AnalyzeElementService;
-import br.com.jsn.composite.DeliveryElementService;
-import br.com.jsn.composite.EmployeeElementService;
-import br.com.jsn.composite.ProjectComposite;
-import br.com.jsn.composite.TaskElementService;
+import br.com.jsn.composite.ActionElement;
+import br.com.jsn.composite.AnalyzeElement;
+import br.com.jsn.composite.EmployeeElement;
+import br.com.jsn.composite.ManagerComposite;
+import br.com.jsn.composite.ProjectElement;
+import br.com.jsn.composite.TaskElement;
 import br.com.jsn.dto.ActionDTO;
+import br.com.jsn.dto.AnalystDTO;
 import br.com.jsn.dto.AnalyzeDTO;
-import br.com.jsn.dto.DeliveryDTO;
 import br.com.jsn.dto.EmployeeDTO;
 import br.com.jsn.dto.ProjectDTO;
+import br.com.jsn.dto.ProjectRequestDTO;
 import br.com.jsn.dto.TaskDTO;
+import br.com.jsn.entity.EmployeeEntity;
+import br.com.jsn.entity.ProjectEntity;
+import br.com.jsn.entity.TaskEntity;
+import br.com.jsn.helper.Builder;
+import br.com.jsn.repository.ProjectRepository;
 
 @Service
-public class ProjectService {
+public class ProjectService implements Builder<ProjectEntity,ProjectDTO>{
 
+    @Autowired
+    private ProjectRepository projectRepository;
 
     @Autowired
     private TaskService taskService ;
@@ -33,45 +45,81 @@ public class ProjectService {
     private ActionService actionService ;
 
 
-    public void createProject(ProjectDTO projectDto){
-        
+    public Object createProject(ProjectRequestDTO projectRequestDTO){
+      /*
+       * TYPE  ENTRADA REQUEST PROJECT
+         VARIABLE  accountId , projectId and taskId
+         ACTION  associar accountId to projectId and add taskId to project
+         TEST       OK
 
+         TYPE  RESULT  PROJECT COMPOSITE OBJECT 
+         VARIABLE  account OBJECT , project OBJECT and task OBJECT
+         ACTION  associar account to project and add task to project
+         TEST       OK
+       * 
+      */
+      
+      ProjectEntity projectEntity = new ProjectEntity();
+      projectEntity.setProjectScope(projectRequestDTO.getScope());
+      projectEntity.setProjectDescription(projectRequestDTO.getDescription());
+      projectEntity.setProjectType(projectRequestDTO.getType());
+      projectEntity.setProjectReponsability(projectRequestDTO.getAccount());
+      
+      ProjectEntity newProjectEntity =   projectRepository.save(projectEntity);
+              
+      ProjectDTO newProjectDto =  buildDto(newProjectEntity);
+      
+      
+       TaskEntity task = new TaskEntity();
+       task.setDescription(projectRequestDTO.getDescriptionTask());
+       task.setProject(newProjectEntity.getProjectId());
+       task.setTaskType(projectRequestDTO.getTypeTask());
+       task.setFunctional(projectRequestDTO.getFunctional());
+       task.setRequirements(projectRequestDTO.getRequirements());
+     
+       TaskDTO newTaskDto = taskService.buildAndSave(task);
+        
+       ManagerComposite managerComposite =new ManagerComposite(newProjectDto.getScope());
+      
+       ProjectElement projectElement = new ProjectElement(newProjectDto);
+       TaskElement taskElementService = new TaskElement(newTaskDto);
+      
+       managerComposite.add(projectElement);
+       managerComposite.add(taskElementService);
+      System.out.println(managerComposite.display());
 
-       
-        ProjectComposite projectComposite =new ProjectComposite(projectDto.getTask().getDescription());
-        
-        TaskDTO dto = taskService.saveTask(projectDto.getTask()); 
-        
-        TaskElementService taskElementService = new TaskElementService(dto);
-        
-        projectComposite.add(projectComposite);
-        projectComposite.add(taskElementService);
+      return managerComposite.get();
     
     }
 
-
-   // "analysis of task for employees - system send the task to n employees to analysis "
+    /*
+     * 
+     * TYPE     : ENTRADA
+     * VARIABLE : employees , task , project
+     * ACTION   : if employee type == task type then add employer to analyst group 
+     * TEST     : OK or 0  return analysis with task and employees associate
+     * 
+     * TYPE     : SAIDA
+     * VARIABLE : employees , task , project , analysis
+     * ACTION   : return ALL analyze record with task_project_id
+     * TEST     : OK or 0 
+    */
+   // "analysis of task from employees - system send the task to n employees to make analysis "
      
      //retorna um lista de profissionais/analises alcançados
 
-   public List<EmployeeDTO> enviarTaskToEmployees(ProjectDTO projectDto){
+   public List<EmployeeDTO> sendTaskToEmployees(ProjectDTO projectDto){
 
 
-   ProjectComposite projectComposite =new ProjectComposite(projectDto.getTask().getDescription());
+    //project from stakholder
+    ProjectEntity project  = projectRepository.findProjectById(projectDto.getId());
 
-   List<EmployeeDTO> listEmployeeDTO =  employeeService.findEmployees();
+    ProjectDTO newProjectDto =  buildDto(project);
+    //task from project
+    List<TaskDTO> listDto = taskService.findTasksByProject(newProjectDto.getId());
+    //employes whiche match with task
+    List<EmployeeDTO> listEmployeeDTO =  employeeService.findEmployees(listDto.get(0).getType());
 
-    for(EmployeeDTO employeeDTO : listEmployeeDTO){
-
-
-        AnalyzeDTO analyzeDTO = new AnalyzeDTO();
-        analyzeDTO.setAnalyst(employeeDTO);
-        analyzeDTO.setTask(projectDto.getTask());
-
-        EmployeeElementService employeeService = new EmployeeElementService(employeeDTO);
-        projectComposite.add(employeeService);
-        projectComposite.display();
-    }
 
     return listEmployeeDTO;
 
@@ -86,35 +134,36 @@ public class ProjectService {
         
       analisar a tarefa ou recusar")
       */  
-      public AnalyzeDTO analysisOfTask(ProjectDTO projectDto , AnalyzeDTO analyzeDTO){
+      public AnalyzeDTO analysisOfTask(AnalystDTO dto){
         
 
-        ProjectComposite projectComposite =new ProjectComposite(projectDto.getTask().getDescription());
           /* 
              buscar todas as oferta para analise para o employee id x
              */
+            EmployeeDTO employeeDTO = employeeService.findEmployeeById(dto.getEmployeeId());
 
-             AnalyzeDTO newAnalyze = analyzeService.saveAnalyze(analyzeDTO);
-             projectDto.getListAnalyzes().add(newAnalyze);
+            TaskDTO taskDTO = taskService.findTask(dto.getProjectId());
+
+             AnalyzeDTO newAnalyze = new AnalyzeDTO();
+             newAnalyze.setAnalyst(employeeDTO);
+             newAnalyze.setTask(taskDTO);
+             newAnalyze.setComplexity(dto.getComplexity());
+             newAnalyze.setCost(dto.getCost());
+             newAnalyze.setPriority(dto.getPriority());
+             newAnalyze.setTime(dto.getTime());
+             newAnalyze.setValue(dto.getValue());
            
-            AnalyzeElementService analyzeService = new AnalyzeElementService(newAnalyze);
-          
- 
-            projectComposite.add(analyzeService);
-            projectComposite.display();
+             AnalyzeDTO analyzeDtoResult =  analyzeService.saveAnalyze(newAnalyze);
+  
           
               //retorna uma analises 
-            return analyzeDTO;
+            return analyzeDtoResult;
     
     
         }
 
 
-
-
-
-
-           /*
+        /*
             component project service
 
          scenario cliente recebe 0 or N analizes de orçamento
@@ -128,24 +177,15 @@ public class ProjectService {
        "cliente recebe lista de orçamentos
         */
         public List<AnalyzeDTO> receberAnalyses(ProjectDTO projectDto){
-        
-        ProjectComposite projectComposite =new ProjectComposite(projectDto.getTask().getDescription());
-            
-
-        List<AnalyzeDTO> listAnalysisRetorno = new ArrayList<>();
-
-        projectDto.getListAnalyzes().get(3).setStatus("APROVADO");
-        
-
+     
+      
            //retorna uma lista de analises 
      
-            return projectDto.getListAnalyzes();
+            return null;
 
         }
 
-
-
-         /*
+        /*
          * 
          * 
         /*scenario - profissional recebe aprovação de orçamento
@@ -158,26 +198,19 @@ public class ProjectService {
   
         public void iniciarAtividade(ProjectDTO projectDto){
         
-        ProjectComposite projectComposite =new ProjectComposite(projectDto.getTask().getDescription());
-                    
-
-
-
-
-            List<AnalyzeDTO> listAnalysis = new ArrayList<>();
+   
+        List<AnalyzeDTO> listAnalysis = new ArrayList<>();
 
             listAnalysis.get(3).setStatus("APROVADO");
                 ActionDTO actionDTO = new ActionDTO();
                 actionDTO.setObjective(null);
-                actionDTO.setResource(projectDto.getListAnalyzes().get(3).getResource().toString());
-                actionDTO.setStart("19/02/2024");
+            //  actionDTO.setStart("19/02/2024");
                 actionDTO.setEnd("26/02/2024");
                 actionDTO.setStatus("PROCESSING"); 
                 
                 //retorna um objeto action atualizado
                 
-        ActionElementService actionService = new ActionElementService(actionDTO);
-        projectComposite.add(actionService);
+        ActionElement actionService = new ActionElement(actionDTO);
                 
     
             
@@ -221,21 +254,13 @@ public class ProjectService {
                  actionDTO.getDescription().add(causa);
                  
                   //retorna um objeto action atualizado
-               
-    
-    
+      
             }
-
-
-        
-
 
         
         public void cancelAtividade(ActionDTO action){
 
-
             String causa = "information about cause - DATA:";
-    
             List<AnalyzeDTO> listAnalysis = new ArrayList<>();
 
             listAnalysis.get(3).setStatus("APROVADO");
@@ -251,6 +276,35 @@ public class ProjectService {
           
 
 
+        }
+
+
+        @Override
+        public ProjectDTO buildDto(ProjectEntity e) {
+          
+          ProjectDTO projectDto = new ProjectDTO();
+          projectDto.setAccount(e.getProjectReponsability());
+          projectDto.setScope(e.getProjectScope());
+          projectDto.setDescription(e.getProjectDescription());
+          projectDto.setType(e.getProjectType());
+          projectDto.setId(e.getProjectId());
+
+          return projectDto;
+        }
+
+
+        @Override
+        public ProjectEntity buildEntity(ProjectDTO dto) {
+
+          ProjectEntity projectEntity =  projectRepository.findProjectByAccountId(dto.getAccount());
+
+          return projectEntity ;
+        }
+
+        public ProjectEntity findProjectId(Long id) {
+
+         
+          return projectRepository.findProjectById(id) ;
         }
 
 
