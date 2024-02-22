@@ -4,16 +4,18 @@ import java.util.List;
 
 public class AnalyzeDTO {
 
+
+    private Long id;
     private String objective;
     private String value ;
     private String cost;
     private String time;
     private String complexity;
     private String priority;
-    private EmployeeDTO analyst ;
-    private TaskDTO task ;
+    private Long analyst ;
+    private Long task ;
     private String status;
-    private List<String> resource ;
+    private Long resource ;
 
     public AnalyzeDTO(){}
 
@@ -65,19 +67,19 @@ public class AnalyzeDTO {
         this.priority = priority;
     }
 
-    public EmployeeDTO getAnalyst() {
+    public Long getAnalyst() {
         return analyst;
     }
 
-    public void setAnalyst(EmployeeDTO analyst) {
+    public void setAnalyst(Long analyst) {
         this.analyst = analyst;
     }
 
-    public TaskDTO getTask() {
+    public Long getTask() {
         return task;
     }
 
-    public void setTask(TaskDTO task) {
+    public void setTask(Long task) {
         this.task = task;
     }
 
@@ -89,21 +91,23 @@ public class AnalyzeDTO {
         this.status = status;
     }
 
-    public List<String> getResource() {
+    public Long getResource() {
         return resource;
     }
 
-    public void setResource(List<String> resource) {
+    public void setResource(Long resource) {
         this.resource = resource;
     }
 
-    @Override
-    public String toString() {
-        return "AnalyzeDTO [objective=" + objective + ", value=" + value + ", cost=" + cost + ", time=" + time
-                + ", complexity=" + complexity + ", priority=" + priority + ", analyst=" + analyst + ", task=" + task
-                + ", status=" + status + ", resource=" + resource + "]";
+    public Long getId() {
+        return id;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    
    
     
 

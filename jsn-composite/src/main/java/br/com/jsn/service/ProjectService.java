@@ -140,24 +140,26 @@ public class ProjectService implements Builder<ProjectEntity,ProjectDTO>{
           /* 
              buscar todas as oferta para analise para o employee id x
              */
-            EmployeeDTO employeeDTO = employeeService.findEmployeeById(dto.getEmployeeId());
+            EmployeeDTO employeeDTO = employeeService.findEmployeeById(dto.getEmployee());
 
-            TaskDTO taskDTO = taskService.findTask(dto.getTaskId());
+            TaskDTO taskDTO = taskService.findTask(dto.getTask());
 
              AnalyzeDTO newAnalyze = new AnalyzeDTO();
-             newAnalyze.setAnalyst(employeeDTO);
-             newAnalyze.setTask(taskDTO);
+             newAnalyze.setAnalyst(employeeDTO.getId());
+             newAnalyze.setTask(taskDTO.getId());
              newAnalyze.setComplexity(dto.getComplexity());
              newAnalyze.setCost(dto.getCost());
              newAnalyze.setPriority(dto.getPriority());
              newAnalyze.setTime(dto.getTime());
              newAnalyze.setValue(dto.getValue());
+             newAnalyze.setResource(dto.getResource());
+             newAnalyze.setStatus("PROCESSING");
            
              AnalyzeDTO analyzeDtoResult =  analyzeService.saveAnalyze(newAnalyze);
   
-          
+            System.out.println("RESULTADO " + analyzeDtoResult.getTime());
               //retorna uma analises 
-            return newAnalyze;
+            return analyzeDtoResult;
     
     
         }

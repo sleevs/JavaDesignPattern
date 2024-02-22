@@ -23,7 +23,7 @@ public class EmployeeService implements CrudService<EmployeeEntity> {
         List<EmployeeDTO>  listOutput = new ArrayList<>();
         List<EmployeeEntity> listInput = employeeRepository.findEmployeesByType(param);
         for(EmployeeEntity e : listInput){
-            listOutput.add(buildDto(e));
+            listOutput.add(build(e));
         }
 
         return listOutput ;
@@ -60,16 +60,17 @@ public class EmployeeService implements CrudService<EmployeeEntity> {
 
 
 
-    public  EmployeeDTO buildDto(EmployeeEntity e){
+    private  EmployeeDTO build(EmployeeEntity e){
 
         EmployeeDTO dto = new EmployeeDTO();
+        dto.setId(e.getEmployeeId());
         dto.setCertification(e.getEmployeeCertification());
-        dto.setEmail(e.getEmployeeEmail());
         dto.setExperience(e.getEmployeeExperience());
         dto.setSkills(e.getEmployeeSkills());
         dto.setName(e.getEmployeeName());
         dto.setPhone(e.getEmployeePhone());
         dto.setType(e.getEmployeeType());
+        dto.setEmail(e.getEmployeeEmail());
         return dto;
     }
 
@@ -83,8 +84,9 @@ public class EmployeeService implements CrudService<EmployeeEntity> {
 
 
     public  EmployeeDTO findEmployeeById(Long id){
-
-        return  buildDto(employeeRepository.findEmployeesById(id));
+        var result = employeeRepository.findEmployeesById(id);
+        System.out.println(result);
+        return  build(result);
        
     }
    

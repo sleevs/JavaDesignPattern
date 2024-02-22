@@ -4,7 +4,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.jsn.composite.ManagerComposite;
 import br.com.jsn.composite.TaskElement;
-import br.com.jsn.dto.AnalystDTO;
+import br.com.jsn.dto.AnalyzeRequestDTO;
 import br.com.jsn.dto.ProjectDTO;
 import br.com.jsn.dto.ProjectRequestDTO;
 import br.com.jsn.dto.TaskDTO;
@@ -165,10 +165,10 @@ EVALUATE
         return ResponseEntity.ok("");
      }
 
-     @PostMapping("/analyst")
-     public ResponseEntity<Object> createAnalyze(@RequestBody AnalystDTO dto){
+     @PostMapping("/analisar")
+     public ResponseEntity<Object> createAnalyze(@RequestBody AnalyzeRequestDTO dto){
 
-
+      System.out.println("TESTE INPUT " + dto.getType());
          /*scenario cliente recebe 0 or N analizes de orçamento
 
          * give receber analise 

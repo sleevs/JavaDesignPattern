@@ -2,10 +2,18 @@ package br.com.jsn.entity;
 
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
+@Entity
+@Table(name = "analyzer")
 public class AnalyzeEntity {
 
-    @Column(name="analyze_id")
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)    
     private Long analyzeId;
     @Column(name="analyze_date")
     private String analyzeDate;
@@ -13,13 +21,11 @@ public class AnalyzeEntity {
     private String value ;
     @Column(name="analyze_cost")
     private String cost;
-    @Column(name="analyze_time")
-    private String time;
     @Column(name="analyze_complexity")
     private String complexity;
     @Column(name="analyze_priority")
     private String priority;
-    @Column(name="analyze_analyst")
+    @Column(name="analyst_id")
     private Long analyst ;
     @Column(name="task_id")
     private Long task ;
@@ -58,13 +64,7 @@ public class AnalyzeEntity {
         this.cost = cost;
     }
 
-    public String getTime() {
-        return time;
-    }
-
-    public void setTime(String time) {
-        this.time = time;
-    }
+  
 
     public String getComplexity() {
         return complexity;

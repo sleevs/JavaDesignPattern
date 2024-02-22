@@ -3,24 +3,25 @@ package br.com.jsn.dto;
 public class AnalyzeRequestDTO {
 
     
-    private Long employeeId;
+    private Long employee;
     private String type;
-    private Long taskId;
-    private Long projectId;
+    private Long task;
+    private Long project;
     private String value ;
     private String cost;
     private String time;
     private String complexity;
     private String priority;
+    private Long resource;
 
     public AnalyzeRequestDTO(){}
 
-    public Long getEmployeeId() {
-        return employeeId;
+    public Long getEmployee() {
+        return employee;
     }
 
-    public void setEmployeeId(Long employeeId) {
-        this.employeeId = employeeId;
+    public void setEmployee(Long employee) {
+        this.employee = employee;
     }
 
     public String getType() {
@@ -31,20 +32,20 @@ public class AnalyzeRequestDTO {
         this.type = type;
     }
 
-    public Long getTaskId() {
-        return taskId;
+    public Long getTask() {
+        return task;
     }
 
-    public void setTaskId(Long taskId) {
-        this.taskId = taskId;
+    public void setTask(Long task) {
+        this.task = task;
     }
 
-    public Long getProjectId() {
-        return projectId;
+    public Long getProject() {
+        return project;
     }
 
-    public void setProjectId(Long projectId) {
-        this.projectId = projectId;
+    public void setProject(Long project) {
+        this.project = project;
     }
 
     public String getValue() {
@@ -87,8 +88,13 @@ public class AnalyzeRequestDTO {
         this.priority = priority;
     }
 
-    
+    public Long getResource() {
+        return resource;
+    }
 
+    public void setResource(Long resource) {
+        this.resource = resource;
+    }
 
     
 }
