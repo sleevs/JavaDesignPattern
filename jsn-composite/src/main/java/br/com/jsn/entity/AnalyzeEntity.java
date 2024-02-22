@@ -1,34 +1,46 @@
 package br.com.jsn.entity;
 
-import java.util.List;
 
-import br.com.jsn.dto.EmployeeDTO;
-import br.com.jsn.dto.TaskDTO;
+import jakarta.persistence.Column;
 
 public class AnalyzeEntity {
 
-        private String objective;
+    @Column(name="analyze_id")
+    private Long analyzeId;
+    @Column(name="analyze_date")
+    private String analyzeDate;
+    @Column(name="analyze_value")
     private String value ;
+    @Column(name="analyze_cost")
     private String cost;
+    @Column(name="analyze_time")
     private String time;
+    @Column(name="analyze_complexity")
     private String complexity;
+    @Column(name="analyze_priority")
     private String priority;
-    private EmployeeDTO analyst ;
-    private TaskDTO task ;
+    @Column(name="analyze_analyst")
+    private Long analyst ;
+    @Column(name="task_id")
+    private Long task ;
+    @Column(name="analyze_status")
     private String status;
-    private List<String> resource ;
+    @Column(name="resource_id")
+    private Long resource ;
 
     public AnalyzeEntity(){
 
     }
 
-    public String getObjective() {
-        return objective;
+    public Long getAnalyzeId() {
+        return analyzeId;
     }
 
-    public void setObjective(String objective) {
-        this.objective = objective;
+    public void setAnalyzeId(Long analyzeId) {
+        this.analyzeId = analyzeId;
     }
+
+   
 
     public String getValue() {
         return value;
@@ -70,19 +82,19 @@ public class AnalyzeEntity {
         this.priority = priority;
     }
 
-    public EmployeeDTO getAnalyst() {
+    public Long getAnalyst() {
         return analyst;
     }
 
-    public void setAnalyst(EmployeeDTO analyst) {
+    public void setAnalyst(Long analyst) {
         this.analyst = analyst;
     }
 
-    public TaskDTO getTask() {
+    public Long getTask() {
         return task;
     }
 
-    public void setTask(TaskDTO task) {
+    public void setTask(Long task) {
         this.task = task;
     }
 
@@ -94,13 +106,23 @@ public class AnalyzeEntity {
         this.status = status;
     }
 
-    public List<String> getResource() {
+    public Long getResource() {
         return resource;
     }
 
-    public void setResource(List<String> resource) {
+    public void setResource(Long resource) {
         this.resource = resource;
     }
+
+    public String getAnalyzeDate() {
+        return analyzeDate;
+    }
+
+    public void setAnalyzeDate(String analyzeDate) {
+        this.analyzeDate = analyzeDate;
+    }
+
+    
 
     
     

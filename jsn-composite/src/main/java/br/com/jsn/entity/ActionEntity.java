@@ -2,34 +2,37 @@ package br.com.jsn.entity;
 
 import java.util.List;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
 public class ActionEntity {
 
-
-     private String objective;
-    private List<String> itens;
+   
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)  
+    @Column(name ="action_id")
+    private Long actionId;
+    @Column(name ="action_resource")
     private String resource;
+    @Column(name ="action_start")
     private String start;
+    @Column(name ="action_end")
     private String end;
+    @Column(name ="action_status")
     private String status;
-    private List<String> description;
+    @Column(name ="description_id")
+    private Long description;
+    @Column(name ="task_id")
+    private Long taskId ;
 
     public ActionEntity(){}
 
-    public String getObjective() {
-        return objective;
-    }
-
-    public void setObjective(String objective) {
-        this.objective = objective;
-    }
-
-    public List<String> getItens() {
-        return itens;
-    }
-
-    public void setItens(List<String> itens) {
-        this.itens = itens;
-    }
+  
+   
 
     public String getResource() {
         return resource;
@@ -63,14 +66,16 @@ public class ActionEntity {
         this.status = status;
     }
 
-    public List<String> getDescription() {
-        return description;
+
+
+    public Long getTaskId() {
+        return taskId;
     }
 
-    public void setDescription(List<String> description) {
-        this.description = description;
+    public void setTaskId(Long taskId) {
+        this.taskId = taskId;
     }
 
-    
+        
     
 }

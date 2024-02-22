@@ -17,7 +17,7 @@ import br.com.jsn.composite.ManagerComposite;
 import br.com.jsn.composite.ProjectElement;
 import br.com.jsn.composite.TaskElement;
 import br.com.jsn.dto.ActionDTO;
-import br.com.jsn.dto.AnalystDTO;
+import br.com.jsn.dto.AnalyzeRequestDTO;
 import br.com.jsn.dto.AnalyzeDTO;
 import br.com.jsn.dto.EmployeeDTO;
 import br.com.jsn.dto.ProjectDTO;
@@ -134,7 +134,7 @@ public class ProjectService implements Builder<ProjectEntity,ProjectDTO>{
         
       analisar a tarefa ou recusar")
       */  
-      public AnalyzeDTO analysisOfTask(AnalystDTO dto){
+      public AnalyzeDTO analysisOfTask(AnalyzeRequestDTO dto){
         
 
           /* 
@@ -142,7 +142,7 @@ public class ProjectService implements Builder<ProjectEntity,ProjectDTO>{
              */
             EmployeeDTO employeeDTO = employeeService.findEmployeeById(dto.getEmployeeId());
 
-            TaskDTO taskDTO = taskService.findTask(dto.getProjectId());
+            TaskDTO taskDTO = taskService.findTask(dto.getTaskId());
 
              AnalyzeDTO newAnalyze = new AnalyzeDTO();
              newAnalyze.setAnalyst(employeeDTO);
@@ -157,7 +157,7 @@ public class ProjectService implements Builder<ProjectEntity,ProjectDTO>{
   
           
               //retorna uma analises 
-            return analyzeDtoResult;
+            return newAnalyze;
     
     
         }
