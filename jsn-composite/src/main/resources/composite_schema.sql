@@ -26,14 +26,14 @@ CREATE TABLE project (
 
 CREATE TABLE employee (
   employee_id SERIAL PRIMARY KEY, 
-  employee_name  VARCHAR (20) NOT NULL, 
-  employee_type VARCHAR (20)  NOT NULL, 
-  employee_phone VARCHAR (20)  NOT NULL, 
-  employee_email VARCHAR (20)  NOT NULL, 
-  employee_experience VARCHAR (500)  NOT NULL, 
-  employee_skill VARCHAR (200)  NOT NULL, 
-  employee_certification VARCHAR (200)  NOT NULL, 
-  employee_create TIMESTAMP NOT NULL
+  employee_name  VARCHAR (20) , 
+  employee_type VARCHAR (20) , 
+  employee_phone VARCHAR (20)  , 
+  employee_email VARCHAR (20)  , 
+  employee_experience VARCHAR (500)  , 
+  employee_skill VARCHAR (200)  , 
+  employee_certification VARCHAR (200)  , 
+  employee_create TIMESTAMP 
 );
 
 

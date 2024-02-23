@@ -25,71 +25,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 @RestController
 public class ProjectController {
 
-    /*
-
-    Why? - What is the problem ? Why is it being sponsored?
-    What? - What is the work that will be performed on the project? 
-            What are the major products/deliverables?
-    Who? - Who will be involved and what will be their responsibilities
-            within the project? How will they be organized?
-    When? - What is the project timeline and when will particularly
-            meaningful points, referred to as milestones, be complete?
-
-    Scope management
-    Requirements management
-    Schedule management
-    Financial management
-    Quality management
-    Resource management
-    Stakeholder management – New from PMBOK 5
-    Communications management
-    Project change management
-    Risk management
-     * 
-    */
-
-
-    /*
-
- FRAMEWORK 
- 
- 
- DEFINE
- ------------------
- PROBLEM  : 
-                 is your customer :
-                 - person or organiation who want make a service
- 		 is everyone  ?  professional x  person or organiation
- 		 a segment ?
-                 - service 
-                Urgent ? 
-                  - Relative to other needs
-                                - priority , which determines resources allocated 
-                                - priority , choices consumer have to spend their money 
- 		
-   
- NEED	  :	B2C
- SOLUTION :
- IDEA     :
-
-
-EVALUATE	
- ------------------
- GAIN     : Demostration
- PAIN	  : 	
- SOLUTION :
- IDEA     :
-
-
-
- BUILD
- ------------------
- VALUE    :
- PROP	  :	
- 
-     * 
-     * 
-    */
 
     @Autowired
     private EmployeeService employeeService;
@@ -152,33 +87,35 @@ EVALUATE
       return ResponseEntity.ok(projectService.sendTaskToEmployees(projectDto));
      }
 
-     @PostMapping("/professional")
-     public ResponseEntity<Object> createProfessional(){
+    
 
-         /*scenario profissionais analisam o projeto
+     @PostMapping("/analyst")
+     public ResponseEntity<Object> createAnalyze(@RequestBody AnalyzeRequestDTO dto){
+
+     /*scenario profissionais analisam o projeto
 
          * give receber tarefa 
          * then analisar a tarefa ou recusar
          * when retornar para orçamento para o projeto
         */
+   
 
-        return ResponseEntity.ok("");
+        return ResponseEntity.ok(projectService.analysisOfTask(dto));
      }
 
-     @PostMapping("/analisar")
-     public ResponseEntity<Object> createAnalyze(@RequestBody AnalyzeRequestDTO dto){
 
-      System.out.println("TESTE INPUT " + dto.getType());
-         /*scenario cliente recebe 0 or N analizes de orçamento
+     @PostMapping("/verify")
+     public ResponseEntity<Object> verifyAnalysis(@RequestBody ProjectDTO dto){
+
+          /*scenario cliente recebe 0 or N analizes de orçamento
 
          * give receber analise 
          * then cliente verificar analise da tarefa
          * when retornar para o projeto aceite/recusa
         */
 
-        return ResponseEntity.ok(projectService.analysisOfTask(dto));
+        return ResponseEntity.ok("");
      }
-
      @PostMapping("/action")
      public ResponseEntity<Object> createAction(){
 

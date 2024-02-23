@@ -1,5 +1,10 @@
 package br.com.jsn.service;
 
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,9 +34,14 @@ public class EmployeeService implements CrudService<EmployeeEntity> {
         return listOutput ;
     }
 
-    public EmployeeDTO saveEmployee(EmployeeDTO e){
-
-        return null ;
+    public EmployeeDTO saveEmployee(EmployeeDTO dtoEmployee){
+           
+    
+    
+            EmployeeEntity entity = build(dtoEmployee);
+            entity.setEmployeeDateTime(LocalDateTime.now());
+            var dto = employeeRepository.save(entity);
+        return build(dto) ;
     }
 
     @Override
@@ -62,7 +72,7 @@ public class EmployeeService implements CrudService<EmployeeEntity> {
 
     private  EmployeeDTO build(EmployeeEntity e){
 
-        EmployeeDTO dto = new EmployeeDTO();
+        var dto = new EmployeeDTO();
         dto.setId(e.getEmployeeId());
         dto.setCertification(e.getEmployeeCertification());
         dto.setExperience(e.getEmployeeExperience());
@@ -75,10 +85,19 @@ public class EmployeeService implements CrudService<EmployeeEntity> {
     }
 
 
-    public  EmployeeEntity buildEntity(EmployeeDTO dto){
+    private  EmployeeEntity build(EmployeeDTO dto){
+
+        var employeeEntity = new EmployeeEntity();
+        employeeEntity.setEmployeeCertification(dto.getCertification());
+        employeeEntity.setEmployeeEmail(dto.getEmail());
+        employeeEntity.setEmployeeExperience(dto.getExperience());
+        employeeEntity.setEmployeePhone(dto.getPhone());
+        employeeEntity.setEmployeeName(dto.getName());
+        employeeEntity.setEmployeeSkills(dto.getSkills());
+        employeeEntity.setEmployeeType(dto.getType());
 
 
-        return  employeeRepository.findEmployeesById(dto.getId());
+        return employeeEntity;
        
     }
 

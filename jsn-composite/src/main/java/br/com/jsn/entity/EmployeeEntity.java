@@ -1,4 +1,5 @@
 package br.com.jsn.entity;
+import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -12,7 +13,7 @@ import jakarta.persistence.Table;
 public class EmployeeEntity {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)    
+    @GeneratedValue(strategy=GenerationType.IDENTITY)    
     private Long employeeId;
     @Column(name="employee_name")
     private String employeeName;
@@ -28,6 +29,8 @@ public class EmployeeEntity {
     private String employeeExperience;
     @Column(name="employee_certification")
     private String employeeCertification;
+    @Column(name="employee_create")
+    private LocalDateTime employeeCreate;
 
     public EmployeeEntity(){}
 
@@ -93,6 +96,14 @@ public class EmployeeEntity {
 
     public void setEmployeeCertification(String employeeCertification) {
         this.employeeCertification = employeeCertification;
+    }
+
+    public LocalDateTime getEmployeeDateTime() {
+        return employeeCreate;
+    }
+
+    public void setEmployeeDateTime(LocalDateTime employeeCreate) {
+        this.employeeCreate = employeeCreate;
     }
 
     
