@@ -13,7 +13,7 @@ public interface AnalyzeRepository extends JpaRepository<AnalyzeEntity,Long>{
 
 
 
-    @Query(value="SELECT * FROM analyzer a WHERE a.analyze_id = ?" , nativeQuery=true)
+    @Query(value="SELECT * FROM analyzer a WHERE a.employee_id = ?" , nativeQuery=true)
     public AnalyzeEntity findAnalyzeById(Long id);
 
 
@@ -22,6 +22,11 @@ public interface AnalyzeRepository extends JpaRepository<AnalyzeEntity,Long>{
 
     @Query(value="SELECT * FROM analyzer a WHERE a.employee_id = ?" , nativeQuery=true)
     public AnalyzeEntity findAnalyzeByEmployee(Long id);
+
+
+    @Query(value="SELECT * FROM analyzer a WHERE a.employee_id = ?1 AND a.analyze_status = ?2" , nativeQuery=true)
+    public List<AnalyzeEntity> findAnalyzeByEmployeeAndStatus(Long id, String status);
+
 
 
 

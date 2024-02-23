@@ -15,11 +15,11 @@ create table account (
 
 CREATE TABLE project (
   project_id SERIAL PRIMARY KEY, 
-  project_type VARCHAR (50)  NOT NULL, 
-  project_description VARCHAR (50)  NOT NULL, 
-  project_date TIMESTAMP NOT NULL ,
+  project_type VARCHAR (20)  , 
+  project_description VARCHAR (50)  , 
+  project_date TIMESTAMP ,
   project_responsability int ,
-  project_scope varchar(500) 
+  project_scope varchar(50) 
 
 );
 
@@ -30,9 +30,9 @@ CREATE TABLE employee (
   employee_type VARCHAR (20) , 
   employee_phone VARCHAR (20)  , 
   employee_email VARCHAR (20)  , 
-  employee_experience VARCHAR (500)  , 
-  employee_skill VARCHAR (200)  , 
-  employee_certification VARCHAR (200)  , 
+  employee_experience VARCHAR (50)  , 
+  employee_skill VARCHAR (50)  , 
+  employee_certification VARCHAR (50)  , 
   employee_create TIMESTAMP 
 );
 
@@ -40,9 +40,9 @@ CREATE TABLE employee (
 
 CREATE TABLE task (
   task_id SERIAL PRIMARY KEY, 
-  task_functional VARCHAR (50)  NOT NULL, 
-  task_description VARCHAR (500)  , 
-  task_requirements VARCHAR (200)  ,
+  task_functional VARCHAR (50)  , 
+  task_description VARCHAR (50)  , 
+  task_requirements VARCHAR (50)  ,
   project_id int , 
  
 );
@@ -50,9 +50,9 @@ CREATE TABLE task (
 
 CREATE TABLE resource (
   resource_id SERIAL PRIMARY KEY, 
-  resource_description VARCHAR (100)  NOT NULL, 
-  resource_value VARCHAR (20)  NOT NULL, 
-  resource_type VARCHAR (20)  NOT NULL 
+  resource_description VARCHAR (50)  , 
+  resource_value VARCHAR (20)  , 
+  resource_type VARCHAR (20)   
  
 );
 
@@ -74,7 +74,7 @@ CREATE TABLE analyzer (
 
 CREATE TABLE description_action (
   description_action_id SERIAL PRIMARY KEY, 
-  description_action_value VARCHAR (200)  NOT NULL, 
+  description_action_value VARCHAR (20)  NOT NULL, 
   description_action_type VARCHAR (20)  NOT NULL
  
 );
@@ -83,10 +83,10 @@ CREATE TABLE description_action (
 CREATE TABLE action (
   action_id SERIAL PRIMARY KEY, 
   action_resource VARCHAR (50)  , 
-  action_start VARCHAR (500)  , 
-  action_end VARCHAR (200) , 
-  action_status VARCHAR (200)  NOT NULL, 
-  description_action_id INT  NOT NULL ,
-  task_id INT NOT NULL 
+  action_start VARCHAR (50)  , 
+  action_end VARCHAR (50) , 
+  action_status VARCHAR (10) , 
+  employee_id INT ,
+  task_id INT  
  
 );

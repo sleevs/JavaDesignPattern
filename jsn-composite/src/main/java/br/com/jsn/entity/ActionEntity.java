@@ -24,8 +24,8 @@ public class ActionEntity {
     private String end;
     @Column(name ="action_status")
     private String status;
-    @Column(name ="description_id")
-    private Long description;
+    @Column(name ="employee_id")
+    private Long employee;
     @Column(name ="task_id")
     private Long taskId ;
 
@@ -76,6 +76,35 @@ public class ActionEntity {
         this.taskId = taskId;
     }
 
+
+
+
+    public Long getActionId() {
+        return actionId;
+    }
+
+
+
+
+    public void setActionId(Long actionId) {
+        this.actionId = actionId;
+    }
+
+
+
+
+    public Long getEmployee() {
+        return employee;
+    }
+
+
+
+
+    public void setEmployee(Long employee) {
+        this.employee = employee;
+    }
+
+    
         
     
 }

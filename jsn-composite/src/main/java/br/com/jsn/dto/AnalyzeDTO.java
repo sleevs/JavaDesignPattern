@@ -1,7 +1,5 @@
 package br.com.jsn.dto;
 
-import java.util.List;
-
 public class AnalyzeDTO {
 
 
@@ -109,16 +107,6 @@ public class AnalyzeDTO {
         this.employee = employee;
     }
 
-    
-   
-    
 
-    
-    
-
-    
-
-    
-    
     
 }

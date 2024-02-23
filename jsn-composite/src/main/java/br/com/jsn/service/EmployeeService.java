@@ -1,10 +1,6 @@
 package br.com.jsn.service;
 
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,6 +39,14 @@ public class EmployeeService implements CrudService<EmployeeEntity> {
             var dto = employeeRepository.save(entity);
         return build(dto) ;
     }
+
+public  EmployeeDTO findEmployeeById(Long id){
+    var result = employeeRepository.findEmployeesById(id);
+    System.out.println(result);
+    return  build(result);
+   
+}
+
 
     @Override
     public EmployeeEntity create(EmployeeEntity e) {
@@ -102,12 +106,7 @@ public class EmployeeService implements CrudService<EmployeeEntity> {
     }
 
 
-    public  EmployeeDTO findEmployeeById(Long id){
-        var result = employeeRepository.findEmployeesById(id);
-        System.out.println(result);
-        return  build(result);
-       
-    }
+ 
    
    
     

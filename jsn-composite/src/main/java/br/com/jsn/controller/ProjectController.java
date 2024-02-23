@@ -4,9 +4,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.jsn.composite.ManagerComposite;
 import br.com.jsn.composite.TaskElement;
+import br.com.jsn.dto.ActionDTO;
 import br.com.jsn.dto.AnalyzeDTO;
 import br.com.jsn.dto.AnalyzeRequestDTO;
 import br.com.jsn.dto.AnalyzeResponseDTO;
+import br.com.jsn.dto.EmployeeDTO;
 import br.com.jsn.dto.ProjectDTO;
 import br.com.jsn.dto.ProjectRequestDTO;
 import br.com.jsn.dto.TaskDTO;
@@ -38,19 +40,8 @@ public class ProjectController {
 
     @PostMapping("/project")
      public ResponseEntity<Object> createProject(@RequestBody ProjectRequestDTO requestDTO){
-
-        /*scenario cliente inicia projeto
-
-         * give cliente cria uma task para projeto 
-         * then enviar para analise de um profissional
-         * when profissional visualizar reponder com analise 
-        */
-         System.out.println(requestDTO.toString());
-      
+    
          return ResponseEntity.ok(projectService.createProject(requestDTO));
-   
-       
-
         
      }
 
@@ -71,14 +62,6 @@ public class ProjectController {
      @PostMapping("/task")
      public ResponseEntity<Object> addTask(){
 
-        /*scenario cliente inicia projeto
-
-         * give cliente cria uma task para projeto 
-         * then enviar para analise de um profissional
-         * when profissional visualizar reponder com analise 
-        */
-
-        
 
         return ResponseEntity.ok("");
      }
@@ -94,14 +77,6 @@ public class ProjectController {
      @PostMapping("/analyst")
      public ResponseEntity<Object> createAnalyze(@RequestBody AnalyzeRequestDTO dto){
 
-     /*scenario profissionais analisam o projeto
-
-         * give receber tarefa 
-         * then analisar a tarefa ou recusar
-         * when retornar para orçamento para o projeto
-        */
-   
-
         return ResponseEntity.ok(projectService.analysisOfTask(dto));
      }
 
@@ -110,46 +85,32 @@ public class ProjectController {
      @PostMapping("/receiver")
      public ResponseEntity<Object> receiverAnalysis(@RequestBody ProjectDTO dto){
 
-          /*scenario cliente recebe 0 or N analizes de orçamento
-
-         * give receber analise 
-         * then cliente verificar analise da tarefa
-         * when retornar para o projeto aceite/recusa
-        */
-
-        
-
-        return ResponseEntity.ok(projectService.receberAnalyses(dto));
+        return ResponseEntity.ok(projectService.receiveAnalyses(dto));
      }
 
      @PostMapping("/verify")
      public ResponseEntity<Object> verifyAnalysis(@RequestBody AnalyzeResponseDTO dto){
 
-          /*scenario cliente recebe 0 or N analizes de orçamento
-
-         * give receber analise 
-         * then cliente verificar analise da tarefa
-         * when retornar para o projeto aceite/recusa
-        */
-
-        
 
         return ResponseEntity.ok(projectService.verifyAnalyses(dto));
      }
-     @PostMapping("/action")
-     public ResponseEntity<Object> createAction(){
 
+    @PostMapping("/accept_projects")
+    public ResponseEntity<Object> acceptProjects(@RequestBody EmployeeDTO dto){
+  
+        return ResponseEntity.ok(projectService.projectsAccept(dto));
+  
+       
+    }
 
-        /*scenario - profissional recebe aprovação de orçamento
-
-         * give profissional receber sinal verde realizar atividade do projeto 
-         * then cliente confirma orçamento 
-         * when profissional fizanliar atividade cliente libera o pagamento
-        */
-
-        return ResponseEntity.ok("");
-     }
-
+    @PostMapping("/action")
+    public ResponseEntity<Object> action(@RequestBody ActionDTO dto , Long analyzeId){
+  
+        return ResponseEntity.ok(projectService.projectAction(dto,analyzeId));
+  
+       
+    }
+    
 
      @PostMapping("/delivery")
      public ResponseEntity<Object> createDelivery(){

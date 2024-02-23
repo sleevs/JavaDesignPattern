@@ -4,16 +4,21 @@ import java.util.List;
 
 public class ActionDTO {
 
+    private Long id;
     private String objective;
     private List<String> itens;
     private String resource;
     private String start;
     private String end;
     private String status;
+    private Long employee ;
+    private Long task;
     private List<String> description;
 
     public ActionDTO(){}
 
+
+    
     public String getObjective() {
         return objective;
     }
@@ -70,11 +75,35 @@ public class ActionDTO {
         this.description = description;
     }
 
-    @Override
-    public String toString() {
-        return "ActionDTO [objective=" + objective + ", itens=" + itens + ", resource=" + resource + ", start=" + start
-                + ", end=" + end + ", status=" + status + ", description=" + description + "]";
+    public Long getEmployee() {
+        return employee;
     }
+
+    public void setEmployee(Long employee) {
+        this.employee = employee;
+    }
+
+    public Long getTask() {
+        return task;
+    }
+
+    public void setTask(Long task) {
+        this.task = task;
+    }
+
+
+
+    public Long getId() {
+        return id;
+    }
+
+
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    
 
     
     

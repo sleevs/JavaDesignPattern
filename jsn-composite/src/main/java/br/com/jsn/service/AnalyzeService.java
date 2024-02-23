@@ -17,10 +17,10 @@ public class AnalyzeService implements CrudService<AnalyzeEntity>{
 
 
     @Autowired
-    AnalyzeRepository  analyzeRepository;
+    private AnalyzeRepository  analyzeRepository;
 
 
-       public AnalyzeDTO build(AnalyzeEntity e){
+       private AnalyzeDTO build(AnalyzeEntity e){
 
         AnalyzeDTO analyzeDTO = new AnalyzeDTO();
         analyzeDTO.setEmployee(e.getEmployee());
@@ -42,7 +42,7 @@ public class AnalyzeService implements CrudService<AnalyzeEntity>{
         return analyzeDTO ;
     }
 
-    public AnalyzeEntity build(AnalyzeDTO dto){
+    private AnalyzeEntity build(AnalyzeDTO dto){
 
         AnalyzeEntity analyzeEntity = new AnalyzeEntity();
         analyzeEntity.setEmployee(dto.getEmployee());
@@ -100,8 +100,25 @@ public List<AnalyzeDTO> verifyAnalysis(AnalyzeResponseDTO analyzeResponseDTO) {
       
 }
 
+public List<AnalyzeDTO> findAnalysisByEmployeeAndStatus(Long id , String status){
+
+    List<AnalyzeDTO> result = new ArrayList<>();
+    var list = analyzeRepository.findAnalyzeByEmployeeAndStatus(id, status);
+
+    for(AnalyzeEntity a : list){
+
+        result.add(build(a));
+    }
+    return result ;
+}
 
 
+
+    public AnalyzeDTO findAnalyzeById(Long id){
+        AnalyzeEntity result = analyzeRepository.findAnalyzeById(id);
+        return build(result) ;
+    }
+    
     @Override
     public AnalyzeEntity create(AnalyzeEntity e) {
         // TODO Auto-generated method stub
