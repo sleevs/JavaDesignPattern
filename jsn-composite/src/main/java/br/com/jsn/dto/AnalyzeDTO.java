@@ -12,7 +12,7 @@ public class AnalyzeDTO {
     private String time;
     private String complexity;
     private String priority;
-    private Long analyst ;
+    private Long employee ;
     private Long task ;
     private String status;
     private Long resource ;
@@ -67,13 +67,7 @@ public class AnalyzeDTO {
         this.priority = priority;
     }
 
-    public Long getAnalyst() {
-        return analyst;
-    }
-
-    public void setAnalyst(Long analyst) {
-        this.analyst = analyst;
-    }
+    
 
     public Long getTask() {
         return task;
@@ -105,6 +99,14 @@ public class AnalyzeDTO {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Long employee) {
+        this.employee = employee;
     }
 
     

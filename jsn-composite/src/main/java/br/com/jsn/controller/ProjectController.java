@@ -4,7 +4,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.jsn.composite.ManagerComposite;
 import br.com.jsn.composite.TaskElement;
+import br.com.jsn.dto.AnalyzeDTO;
 import br.com.jsn.dto.AnalyzeRequestDTO;
+import br.com.jsn.dto.AnalyzeResponseDTO;
 import br.com.jsn.dto.ProjectDTO;
 import br.com.jsn.dto.ProjectRequestDTO;
 import br.com.jsn.dto.TaskDTO;
@@ -104,8 +106,9 @@ public class ProjectController {
      }
 
 
-     @PostMapping("/verify")
-     public ResponseEntity<Object> verifyAnalysis(@RequestBody ProjectDTO dto){
+
+     @PostMapping("/receiver")
+     public ResponseEntity<Object> receiverAnalysis(@RequestBody ProjectDTO dto){
 
           /*scenario cliente recebe 0 or N analizes de orçamento
 
@@ -114,7 +117,24 @@ public class ProjectController {
          * when retornar para o projeto aceite/recusa
         */
 
-        return ResponseEntity.ok("");
+        
+
+        return ResponseEntity.ok(projectService.receberAnalyses(dto));
+     }
+
+     @PostMapping("/verify")
+     public ResponseEntity<Object> verifyAnalysis(@RequestBody AnalyzeResponseDTO dto){
+
+          /*scenario cliente recebe 0 or N analizes de orçamento
+
+         * give receber analise 
+         * then cliente verificar analise da tarefa
+         * when retornar para o projeto aceite/recusa
+        */
+
+        
+
+        return ResponseEntity.ok(projectService.verifyAnalyses(dto));
      }
      @PostMapping("/action")
      public ResponseEntity<Object> createAction(){

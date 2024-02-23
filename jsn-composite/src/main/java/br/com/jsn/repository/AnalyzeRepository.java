@@ -1,6 +1,9 @@
 package br.com.jsn.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
 
@@ -12,6 +15,16 @@ public interface AnalyzeRepository extends JpaRepository<AnalyzeEntity,Long>{
 
     @Query(value="SELECT * FROM analyzer a WHERE a.analyze_id = ?" , nativeQuery=true)
     public AnalyzeEntity findAnalyzeById(Long id);
+
+
+    @Query(value="SELECT * FROM analyzer a WHERE a.task_id = ?" , nativeQuery=true)
+    public List<AnalyzeEntity> findAnalysisByTask(Long id);
+
+    @Query(value="SELECT * FROM analyzer a WHERE a.employee_id = ?" , nativeQuery=true)
+    public AnalyzeEntity findAnalyzeByEmployee(Long id);
+
+
+
 
     
 }

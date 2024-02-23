@@ -1,10 +1,13 @@
 package br.com.jsn.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.jsn.dto.AnalyzeDTO;
-
+import br.com.jsn.dto.AnalyzeResponseDTO;
 import br.com.jsn.entity.AnalyzeEntity;
 import br.com.jsn.repository.AnalyzeRepository;
 
@@ -20,7 +23,7 @@ public class AnalyzeService implements CrudService<AnalyzeEntity>{
        public AnalyzeDTO build(AnalyzeEntity e){
 
         AnalyzeDTO analyzeDTO = new AnalyzeDTO();
-        analyzeDTO.setAnalyst(e.getAnalyst());
+        analyzeDTO.setEmployee(e.getEmployee());
         analyzeDTO.setComplexity(e.getComplexity());
         analyzeDTO.setCost(e.getCost());
         analyzeDTO.setStatus(e.getStatus());
@@ -33,7 +36,7 @@ public class AnalyzeService implements CrudService<AnalyzeEntity>{
         analyzeDTO.setResource(e.getResource());
         analyzeDTO.setValue(e.getValue());
         analyzeDTO.setId(e.getAnalyzeId());
-      
+        analyzeDTO.setTime(e.getAnalyzeDate());      
         
         
         return analyzeDTO ;
@@ -42,7 +45,7 @@ public class AnalyzeService implements CrudService<AnalyzeEntity>{
     public AnalyzeEntity build(AnalyzeDTO dto){
 
         AnalyzeEntity analyzeEntity = new AnalyzeEntity();
-        analyzeEntity.setAnalyst(dto.getAnalyst());
+        analyzeEntity.setEmployee(dto.getEmployee());
         analyzeEntity.setAnalyzeDate(dto.getTime());
         analyzeEntity.setComplexity(dto.getComplexity());
         analyzeEntity.setCost(dto.getCost());
@@ -67,6 +70,37 @@ public class AnalyzeService implements CrudService<AnalyzeEntity>{
             return build(result) ;
     
 }
+
+
+
+
+public List<AnalyzeDTO> findByTaskId(Long task) {
+    
+    List<AnalyzeEntity> analysisFounded = analyzeRepository.findAnalysisByTask(task);
+    List<AnalyzeDTO> resultAnalysis = new ArrayList<>();
+    for(AnalyzeEntity e : analysisFounded){
+        resultAnalysis.add(build(e));
+    }
+
+    return resultAnalysis ;
+}
+
+public List<AnalyzeDTO> verifyAnalysis(AnalyzeResponseDTO analyzeResponseDTO) {
+
+    List<AnalyzeDTO> analyzeVerified= new ArrayList<>();
+
+    for(AnalyzeDTO dto : analyzeResponseDTO.getAnalyze()){
+        
+       AnalyzeEntity analyzeEntity = analyzeRepository.findAnalyzeByEmployee(dto.getEmployee());
+       analyzeEntity.setStatus(dto.getStatus());
+       AnalyzeEntity result = analyzeRepository.saveAndFlush(analyzeEntity);
+       analyzeVerified.add(build(result));
+        }
+        return analyzeVerified;
+      
+}
+
+
 
     @Override
     public AnalyzeEntity create(AnalyzeEntity e) {

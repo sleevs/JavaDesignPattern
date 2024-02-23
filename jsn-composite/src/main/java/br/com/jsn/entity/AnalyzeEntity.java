@@ -25,8 +25,8 @@ public class AnalyzeEntity {
     private String complexity;
     @Column(name="analyze_priority")
     private String priority;
-    @Column(name="analyst_id")
-    private Long analyst ;
+    @Column(name="employee_id")
+    private Long employee ;
     @Column(name="task_id")
     private Long task ;
     @Column(name="analyze_status")
@@ -82,13 +82,7 @@ public class AnalyzeEntity {
         this.priority = priority;
     }
 
-    public Long getAnalyst() {
-        return analyst;
-    }
-
-    public void setAnalyst(Long analyst) {
-        this.analyst = analyst;
-    }
+    
 
     public Long getTask() {
         return task;
@@ -120,6 +114,14 @@ public class AnalyzeEntity {
 
     public void setAnalyzeDate(String analyzeDate) {
         this.analyzeDate = analyzeDate;
+    }
+
+    public Long getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Long employee) {
+        this.employee = employee;
     }
 
     

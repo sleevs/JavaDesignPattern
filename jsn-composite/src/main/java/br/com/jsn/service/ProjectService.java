@@ -18,6 +18,7 @@ import br.com.jsn.composite.ProjectElement;
 import br.com.jsn.composite.TaskElement;
 import br.com.jsn.dto.ActionDTO;
 import br.com.jsn.dto.AnalyzeRequestDTO;
+import br.com.jsn.dto.AnalyzeResponseDTO;
 import br.com.jsn.dto.AnalyzeDTO;
 import br.com.jsn.dto.EmployeeDTO;
 import br.com.jsn.dto.ProjectDTO;
@@ -145,7 +146,7 @@ public class ProjectService implements Builder<ProjectEntity,ProjectDTO>{
             TaskDTO taskDTO = taskService.findTask(dto.getTask());
 
              AnalyzeDTO newAnalyze = new AnalyzeDTO();
-             newAnalyze.setAnalyst(employeeDTO.getId());
+             newAnalyze.setEmployee(employeeDTO.getId());
              newAnalyze.setTask(taskDTO.getId());
              newAnalyze.setComplexity(dto.getComplexity());
              newAnalyze.setCost(dto.getCost());
@@ -180,12 +181,24 @@ public class ProjectService implements Builder<ProjectEntity,ProjectDTO>{
         */
         public List<AnalyzeDTO> receberAnalyses(ProjectDTO projectDto){
      
-      
-           //retorna uma lista de analises 
-     
-            return null;
+            //receber analise 
+           //retorna uma lista de analises - 
+           List<TaskDTO> listDto = taskService.findTasksByProject(projectDto.getId());
+           List<AnalyzeDTO> analyzeDtoResult =  analyzeService.findByTaskId(listDto.get(0).getId());
+    
+            return analyzeDtoResult;
 
         }
+
+        public List<AnalyzeDTO> verifyAnalyses(AnalyzeResponseDTO analyzeResponseDTO){
+          
+          //cliente verificar analise da tarefa
+          // retornar para o projeto aceite/recusa
+        
+           return analyzeService.verifyAnalysis(analyzeResponseDTO);
+
+       }
+
 
         /*
          * 
