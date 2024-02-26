@@ -154,15 +154,32 @@ public class ProjectService implements Builder<ProjectEntity,ProjectDTO>{
             
         }
 
-        public ActionDTO projectAction(ActionDTO dto , Long analyzeId){
+        public ActionDTO projectAction(ActionDTO dto){
         
-          AnalyzeDTO result = analyzeService.findAnalyzeById(analyzeId);
+          AnalyzeDTO result = analyzeService.findAnalyzeById(dto.getAnalyze());
           ActionDTO action = new ActionDTO();
           action.setTask(result.getTask());
+          action.setEmployee(result.getEmployee());
+          action.setStart(dto.getStart());
+          action.setEnd(dto.getEnd());
+          action.setStatus(dto.getStatus());
+          action.setResource(dto.getResource());
           
-           return actionService.createAction(action);
+         return actionService.createAction(action);
               
-          }
+        }
+
+
+
+        public ActionDTO updateAction(ActionDTO dto){
+        
+          AnalyzeDTO result = analyzeService.findAnalyzeById(dto.getAnalyze());
+          ActionDTO action = new ActionDTO();
+        
+          
+         return actionService.createAction(action);
+              
+        }
 
 
         @Override

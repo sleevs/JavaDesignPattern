@@ -4,20 +4,20 @@ import java.util.List;
 
 public class ActionDTO {
 
+    private Long analyze;
     private Long id;
     private String objective;
-    private List<String> itens;
     private String resource;
     private String start;
     private String end;
     private String status;
     private Long employee ;
     private Long task;
-    private List<String> description;
-
+ 
     public ActionDTO(){}
 
 
+    
     
     public String getObjective() {
         return objective;
@@ -25,14 +25,6 @@ public class ActionDTO {
 
     public void setObjective(String objective) {
         this.objective = objective;
-    }
-
-    public List<String> getItens() {
-        return itens;
-    }
-
-    public void setItens(List<String> itens) {
-        this.itens = itens;
     }
 
     public String getResource() {
@@ -67,13 +59,6 @@ public class ActionDTO {
         this.status = status;
     }
 
-    public List<String> getDescription() {
-        return description;
-    }
-
-    public void setDescription(List<String> description) {
-        this.description = description;
-    }
 
     public Long getEmployee() {
         return employee;
@@ -101,6 +86,20 @@ public class ActionDTO {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+
+
+
+    public Long getAnalyze() {
+        return analyze;
+    }
+
+
+
+
+    public void setAnalyze(Long analyze) {
+        this.analyze = analyze;
     }
 
     

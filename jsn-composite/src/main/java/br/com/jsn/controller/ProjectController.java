@@ -1,17 +1,13 @@
 package br.com.jsn.controller;
 
 import org.springframework.web.bind.annotation.RestController;
-
-import br.com.jsn.composite.ManagerComposite;
-import br.com.jsn.composite.TaskElement;
 import br.com.jsn.dto.ActionDTO;
-import br.com.jsn.dto.AnalyzeDTO;
 import br.com.jsn.dto.AnalyzeRequestDTO;
 import br.com.jsn.dto.AnalyzeResponseDTO;
 import br.com.jsn.dto.EmployeeDTO;
 import br.com.jsn.dto.ProjectDTO;
 import br.com.jsn.dto.ProjectRequestDTO;
-import br.com.jsn.dto.TaskDTO;
+
 import br.com.jsn.service.EmployeeService;
 import br.com.jsn.service.ProjectService;
 import br.com.jsn.service.TaskService;
@@ -20,7 +16,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -30,10 +25,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 public class ProjectController {
 
 
-    @Autowired
-    private EmployeeService employeeService;
-    @Autowired
-    private TaskService taskService;
     @Autowired
     private ProjectService projectService;
 
@@ -104,9 +95,17 @@ public class ProjectController {
     }
 
     @PostMapping("/action")
-    public ResponseEntity<Object> action(@RequestBody ActionDTO dto , Long analyzeId){
+    public ResponseEntity<Object> action(@RequestBody ActionDTO dto ){
   
-        return ResponseEntity.ok(projectService.projectAction(dto,analyzeId));
+        return ResponseEntity.ok(projectService.projectAction(dto));
+  
+       
+    }
+
+    @PostMapping("/action_update")
+    public ResponseEntity<Object> actionUpdate(@RequestBody ActionDTO dto ){
+  
+        return ResponseEntity.ok(projectService.updateAction(dto));
   
        
     }

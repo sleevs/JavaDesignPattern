@@ -26,7 +26,7 @@ public class ActionService {
     
 
     public ActionEntity build(ActionDTO dto){
-        var action = new ActionEntity();
+        ActionEntity action = new ActionEntity();
         
         action.setStart(dto.getStart());
         action.setEnd(dto.getEnd());
@@ -40,7 +40,22 @@ public class ActionService {
     
 
     public ActionDTO createAction(ActionDTO actionDTO){
-       var result = actionRepository.save(build(actionDTO));
+        ActionEntity action = build(actionDTO);
+       var result = actionRepository.save(action);
+        return build(result) ;
+    }
+
+
+
+    public ActionDTO updateAction(ActionDTO actionDTO){
+        ActionEntity action =  actionRepository.findActionById(actionDTO.getId());
+        action.setTaskId(actionDTO.getTask());
+        action.setEmployee(actionDTO.getEmployee());
+        action.setStart(actionDTO.getStart());
+        action.setEnd(actionDTO.getEnd());
+        action.setStatus(actionDTO.getStatus());
+        action.setResource(actionDTO.getResource());
+       var result = actionRepository.saveAndFlush(action);
         return build(result) ;
     }
 }
