@@ -39,8 +39,9 @@ public class ActionService {
     }
     
 
-    public ActionDTO createAction(ActionDTO actionDTO){
-        ActionEntity action = build(actionDTO);
+    public ActionDTO createAction(ActionDTO dto){
+        ActionEntity action = build(dto);
+       
        var result = actionRepository.save(action);
         return build(result) ;
     }

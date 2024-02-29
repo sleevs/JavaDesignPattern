@@ -7,13 +7,7 @@ import br.com.jsn.dto.AnalyzeResponseDTO;
 import br.com.jsn.dto.EmployeeDTO;
 import br.com.jsn.dto.ProjectDTO;
 import br.com.jsn.dto.ProjectRequestDTO;
-
-import br.com.jsn.service.EmployeeService;
 import br.com.jsn.service.ProjectService;
-import br.com.jsn.service.TaskService;
-
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
