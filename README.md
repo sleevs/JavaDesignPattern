@@ -13,16 +13,16 @@ Pattern are not the silver bullet but they can be combined and used in concert t
 
   -  Factory Method 
       
-     [In this example a logistic application was built  which implements a fare calculator.](https://github.com/sleevs/JavaDesignPattern/tree/master/jsn-factory-method) 
+     [In this example a logistic API was built  which implements a fare calculator.](https://github.com/sleevs/JavaDesignPattern/tree/master/jsn-factory-method) 
   
   
   -  Abstract factory
   
-     [In this example, an online payment application was created.](https://github.com/sleevs/JavaDesignPattern/tree/master/jsn-abstract-factory)  
+     [In this example, an payment API was created.](https://github.com/sleevs/JavaDesignPattern/tree/master/jsn-abstract-factory)  
   
   -  Builder 
      
-     [The example is a notification application which defines several ways to notify.](https://github.com/sleevs/JavaDesignPattern/tree/master/jsn-builder)
+     [The example is a notification API which defines several ways to notify.](https://github.com/sleevs/JavaDesignPattern/tree/master/jsn-builder)
   
   -  Prototype 
    
@@ -38,7 +38,7 @@ Pattern are not the silver bullet but they can be combined and used in concert t
   
   -  Composite - DOING
 
-     [Demo to manager project App which elements of a composite pattern can be represented as a project structure.](https://github.com/sleevs/JavaDesignPattern/tree/master/jsn-composite) 
+     [Demo to manager project API which elements of a composite pattern can be represented as a project structure.](https://github.com/sleevs/JavaDesignPattern/tree/master/jsn-composite) 
 
   
   -  Decorator - TODO
