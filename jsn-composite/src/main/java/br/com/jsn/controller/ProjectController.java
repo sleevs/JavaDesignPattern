@@ -1,6 +1,7 @@
 package br.com.jsn.controller;
 
 import org.springframework.web.bind.annotation.RestController;
+
 import br.com.jsn.dto.ActionDTO;
 import br.com.jsn.dto.AnalyzeRequestDTO;
 import br.com.jsn.dto.AnalyzeResponseDTO;
@@ -8,6 +9,7 @@ import br.com.jsn.dto.EmployeeDTO;
 import br.com.jsn.dto.ProjectDTO;
 import br.com.jsn.dto.ProjectRequestDTO;
 import br.com.jsn.service.ProjectService;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,6 +25,8 @@ public class ProjectController {
     private ProjectService projectService;
 
 
+
+    @Operation(summary = "save a project and generate N task")
     @PostMapping("/project")
      public ResponseEntity<Object> createProject(@RequestBody ProjectRequestDTO requestDTO){
     
@@ -31,26 +35,9 @@ public class ProjectController {
      }
 
 
-     @PostMapping("/stop")
-     public ResponseEntity<Object> stopProject(){
 
-        return ResponseEntity.ok("");
-     }
-
-     @PostMapping("/cancel")
-     public ResponseEntity<Object> cancelProject(){
-
-        return ResponseEntity.ok("");
-     }
-
-
-     @PostMapping("/task")
-     public ResponseEntity<Object> addTask(){
-
-
-        return ResponseEntity.ok("");
-     }
-
+     
+     @Operation(summary = "system send the task to N employees to analysis")
      @PostMapping("/send")
      public ResponseEntity<Object> searchAnalyst(@RequestBody ProjectDTO projectDto){
 
@@ -58,7 +45,7 @@ public class ProjectController {
      }
 
     
-
+     @Operation(summary = "analysis of task for N employees")
      @PostMapping("/analyst")
      public ResponseEntity<Object> createAnalyze(@RequestBody AnalyzeRequestDTO dto){
 
@@ -66,20 +53,20 @@ public class ProjectController {
      }
 
 
-
+     @Operation(summary = "client receives 0 or N analysis of budget")
      @PostMapping("/receiver")
      public ResponseEntity<Object> receiverAnalysis(@RequestBody ProjectDTO dto){
 
         return ResponseEntity.ok(projectService.receiveAnalyses(dto));
      }
-
+     @Operation(summary = "client make checking of analysis of tasks")
      @PostMapping("/verify")
      public ResponseEntity<Object> verifyAnalysis(@RequestBody AnalyzeResponseDTO dto){
 
 
         return ResponseEntity.ok(projectService.verifyAnalyses(dto));
      }
-
+     @Operation(summary = "client choose the best budget of tasks") 
     @PostMapping("/accept_projects")
     public ResponseEntity<Object> acceptProjects(@RequestBody EmployeeDTO dto){
   
@@ -87,7 +74,7 @@ public class ProjectController {
   
        
     }
-
+    @Operation(summary = "professional receive a green light to make the task") 
     @PostMapping("/action")
     public ResponseEntity<Object> action(@RequestBody ActionDTO dto ){
   
@@ -95,7 +82,7 @@ public class ProjectController {
   
        
     }
-
+    @Operation(summary = "professional accept the job")
     @PostMapping("/action_update")
     public ResponseEntity<Object> actionUpdate(@RequestBody ActionDTO dto ){
   
@@ -105,20 +92,7 @@ public class ProjectController {
     }
     
 
-     @PostMapping("/delivery")
-     public ResponseEntity<Object> createDelivery(){
-
-        /*scenario - cliente recebe status de conclusão de serviço
-
-            REGRA SENDO AVALIADA
-         * give cliente recebe atualização do profissional  
-         * then cliente faz validação  
-         * when plataforma libera valor do profissional
-        */
-
-        return ResponseEntity.ok("");
-     }
-
+   
 
     
 }
