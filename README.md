@@ -91,5 +91,5 @@ Pattern are not the silver bullet but they can be combined and used in concert t
 
    -  Barrier - TODO
    -  Active objects - TODO
-   -   TODO 
+   
   
