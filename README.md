@@ -36,7 +36,7 @@ Pattern are not the silver bullet but they can be combined and used in concert t
   
   -  Bridge - TODO
   
-  -  Composite - DOING
+  -  Composite
 
      [Demo to manager project API which elements of a composite pattern can be represented as a project structure.](https://github.com/sleevs/JavaDesignPattern/tree/master/jsn-composite) 
 
@@ -61,7 +61,7 @@ Pattern are not the silver bullet but they can be combined and used in concert t
   
   -  Iterator - TODO
   
-  -  Mediator - TODO
+  -  Mediator - DOING
 
      [This is a example of implementation of Mediator Pattern to solution of a Chat App with Server Push Technology.](https://github.com/sleevs/JavaDesignPattern)
 
