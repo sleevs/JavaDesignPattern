@@ -36,7 +36,7 @@ Pattern are not the silver bullet but they can be combined and used in concert t
   
   -  Bridge - TODO
   
-  -  Composite - DONE
+  -  Composite
 
      [Demo to manager project API which elements of a composite pattern can be represented as a project structure.](https://github.com/sleevs/JavaDesignPattern/tree/master/jsn-composite) 
 
