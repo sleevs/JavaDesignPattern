@@ -1,7 +1,10 @@
 package br.com.jsn.service;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,11 +34,9 @@ public class EmployeeService implements CrudService<EmployeeEntity> {
     }
 
     public EmployeeDTO saveEmployee(EmployeeDTO dtoEmployee){
-           
-    
-    
+            Date dateNow = new Date();
             EmployeeEntity entity = build(dtoEmployee);
-            entity.setEmployeeDateTime(LocalDateTime.now());
+            entity.setEmployeeDateTime(dateNow);
             var dto = employeeRepository.save(entity);
         return build(dto) ;
     }
@@ -85,6 +86,9 @@ public  EmployeeDTO findEmployeeById(Long id){
         dto.setPhone(e.getEmployeePhone());
         dto.setType(e.getEmployeeType());
         dto.setEmail(e.getEmployeeEmail());
+        if(e.getEmployeeDateTime() != null){
+            dto.setDate(formatDate(e.getEmployeeDateTime()));
+        }
         return dto;
     }
 
@@ -105,6 +109,16 @@ public  EmployeeDTO findEmployeeById(Long id){
        
     }
 
+
+    private String formatDate(Date date){
+
+        if(date != null){
+            String pattern = "dd/MM/yyyy HH:mm:ss";
+            DateFormat df = new SimpleDateFormat(pattern);
+            return df.format(date);
+        }
+        return null ;
+    }
 
  
    

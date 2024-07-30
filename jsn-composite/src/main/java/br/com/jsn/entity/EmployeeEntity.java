@@ -1,5 +1,6 @@
 package br.com.jsn.entity;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -30,7 +31,7 @@ public class EmployeeEntity {
     @Column(name="employee_certification")
     private String employeeCertification;
     @Column(name="employee_create")
-    private LocalDateTime employeeCreate;
+    private Date employeeCreate;
 
     public EmployeeEntity(){}
 
@@ -98,11 +99,11 @@ public class EmployeeEntity {
         this.employeeCertification = employeeCertification;
     }
 
-    public LocalDateTime getEmployeeDateTime() {
+    public Date getEmployeeDateTime() {
         return employeeCreate;
     }
 
-    public void setEmployeeDateTime(LocalDateTime employeeCreate) {
+    public void setEmployeeDateTime(Date employeeCreate) {
         this.employeeCreate = employeeCreate;
     }
 

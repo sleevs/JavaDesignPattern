@@ -26,25 +26,7 @@ public class ProjectController {
     @Autowired
     private ProjectService projectService;
 
-    @Autowired
-    private EmployeeService employeeService;
-
-    @Operation(summary = "save a employee")
-    @PostMapping("/employee")
-     public ResponseEntity<Object> createEmployee(@RequestBody EmployeeDTO requestDTO){
-    
-         return ResponseEntity.ok(employeeService.saveEmployee(requestDTO));
-        
-     }
-
-
-    @Operation(summary = "save a project and generate N task")
-    @GetMapping("/get")
-     public ResponseEntity<String> getProject(){
-    
-          return ResponseEntity.ok("TESTE API PROJECT MANAGER");
-        
-     }
+   
 
     @Operation(summary = "save a project and generate N task")
     @PostMapping("/project")
