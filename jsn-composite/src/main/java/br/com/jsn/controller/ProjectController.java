@@ -8,10 +8,12 @@ import br.com.jsn.dto.AnalyzeResponseDTO;
 import br.com.jsn.dto.EmployeeDTO;
 import br.com.jsn.dto.ProjectDTO;
 import br.com.jsn.dto.ProjectRequestDTO;
+import br.com.jsn.service.EmployeeService;
 import br.com.jsn.service.ProjectService;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -24,7 +26,25 @@ public class ProjectController {
     @Autowired
     private ProjectService projectService;
 
+    @Autowired
+    private EmployeeService employeeService;
 
+    @Operation(summary = "save a employee")
+    @PostMapping("/employee")
+     public ResponseEntity<Object> createEmployee(@RequestBody EmployeeDTO requestDTO){
+    
+         return ResponseEntity.ok(employeeService.saveEmployee(requestDTO));
+        
+     }
+
+
+    @Operation(summary = "save a project and generate N task")
+    @GetMapping("/get")
+     public ResponseEntity<String> getProject(){
+    
+          return ResponseEntity.ok("TESTE API PROJECT MANAGER");
+        
+     }
 
     @Operation(summary = "save a project and generate N task")
     @PostMapping("/project")

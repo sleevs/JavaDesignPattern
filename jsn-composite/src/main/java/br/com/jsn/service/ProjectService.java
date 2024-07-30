@@ -17,11 +17,11 @@ import br.com.jsn.dto.ProjectRequestDTO;
 import br.com.jsn.dto.TaskDTO;
 import br.com.jsn.entity.ProjectEntity;
 import br.com.jsn.entity.TaskEntity;
-import br.com.jsn.helper.Builder;
+
 import br.com.jsn.repository.ProjectRepository;
 
 @Service
-public class ProjectService implements Builder<ProjectEntity,ProjectDTO>{
+public class ProjectService  {
 
     @Autowired
     private ProjectRepository projectRepository;
@@ -173,7 +173,6 @@ public class ProjectService implements Builder<ProjectEntity,ProjectDTO>{
         }
 
 
-        @Override
         public ProjectDTO buildDto(ProjectEntity e) {
           
           ProjectDTO projectDto = new ProjectDTO();
@@ -187,7 +186,6 @@ public class ProjectService implements Builder<ProjectEntity,ProjectDTO>{
         }
 
 
-        @Override
         public ProjectEntity buildEntity(ProjectDTO dto) {
 
           ProjectEntity projectEntity =  projectRepository.findProjectByAccountId(dto.getAccount());

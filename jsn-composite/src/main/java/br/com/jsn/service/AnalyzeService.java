@@ -89,7 +89,7 @@ public List<AnalyzeDTO> verifyAnalysis(AnalyzeResponseDTO analyzeResponseDTO) {
 
     List<AnalyzeDTO> analyzeVerified= new ArrayList<>();
 
-    for(AnalyzeDTO dto : analyzeResponseDTO.getAnalyze()){
+    for(AnalyzeDTO dto : analyzeResponseDTO.getListAnalyzesDTO()){
         
        AnalyzeEntity analyzeEntity = analyzeRepository.findAnalyzeByEmployee(dto.getEmployee());
        analyzeEntity.setStatus(dto.getStatus());
