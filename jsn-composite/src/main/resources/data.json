@@ -1,0 +1,81 @@
+
+/*
+employee 
+http://127.0.0.1:8081/manager/employee
+*/
+
+{
+"name":"Teste",
+"type":"Teste",
+"email":"teste@gmail.com",
+"phone":"21987456321",
+"skills":"Teste",
+"experience":"Teste"
+}
+
+/*
+project - request
+http://localhost:8081/manager/project
+*/
+
+{
+"scope":"Construcao de Casa",
+"account":1,
+"description":"Preciso construir uma casa de dois comodos",
+"type":"Construcao"
+}
+
+
+
+
+/*
+analysis request
+http://127.0.0.1:8081/manager/analyst
+*/
+
+{
+    "employee":1,
+    "type":"construção",
+    "project":1,
+    "value":"20.000",
+    "cost":"50.000",
+    "estimate":10,
+    "complexity":"MÉDIA",
+"tasks":[
+    {
+    "type":"Fundação",
+    "description":"CONSTRUIR A FUNDAÇÃO EM 2 DIAS",
+    "functional":"ESTRUTURA DA CASA",
+    "requirements":"CIMENTO , FERRO E PEDRA"
+     },
+     {
+    "type":"Alvenaria",
+    "description":"CONSTRUIR AS PAREDES EM 2 DIAS ",
+    "functional":"ESTRUTURA DA CASA",
+    "requirements":"CIMENTO , AREIRA E TIJOLO"
+     }
+     ,
+     {
+    "type":"Laje",
+    "description":"CONSTRUIR A LAJE EM 2 DIAS ",
+    "functional":"ESTRUTURA DA CASA",
+    "requirements":"CIMENTO , AREIRA , PEDRA E FERRO"
+     }
+      ,
+     {
+    "type":"Elétrica",
+    "description":"CONSTRUIR ESTRUTURA ELÉTRICA EM 2 DIAS ",
+    "functional":"ESTRUTURA DA CASA",
+    "requirements":"ROLO DE FIO , TOMADAS E LAMPADAS"
+     }
+     ,
+     {
+    "type":"Revestimento",
+    "description":"CONSTRUIR ACABAMENTO INTERIOR EM 2 DIAS ",
+    "functional":"ESTRUTURA DA CASA",
+    "requirements":"PISO ,JANELAS , PORTAS E ENCANAMENTO"
+     }
+]
+    
+
+}

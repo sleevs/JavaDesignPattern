@@ -1,6 +1,7 @@
 package br.com.jsn.service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import br.com.jsn.dto.AnalyzeDTO;
 import br.com.jsn.dto.AnalyzeResponseDTO;
 import br.com.jsn.entity.AnalyzeEntity;
 import br.com.jsn.repository.AnalyzeRepository;
+import br.com.jsn.util.DateUtil;
 
 
 @Service
@@ -27,37 +29,29 @@ public class AnalyzeService implements CrudService<AnalyzeEntity>{
         analyzeDTO.setComplexity(e.getComplexity());
         analyzeDTO.setCost(e.getCost());
         analyzeDTO.setStatus(e.getStatus());
-        analyzeDTO.setPriority(e.getPriority());
-        analyzeDTO.setTask(e.getTask());
-       if(e.getResource() == null){
-            var result = new Long(0);
-            analyzeDTO.setResource(result);
-        }
-        analyzeDTO.setResource(e.getResource());
         analyzeDTO.setValue(e.getValue());
         analyzeDTO.setId(e.getAnalyzeId());
-        analyzeDTO.setTime(e.getAnalyzeDate());      
+        analyzeDTO.setEstimate(e.getAnalyzeEstimate());
+        analyzeDTO.setProject(e.getProject());
         
+        if(e.getAnalyzeDate() != null){
+            analyzeDTO.setDate(DateUtil.formatDate(e.getAnalyzeDate()));
+        }
         
         return analyzeDTO ;
     }
 
     private AnalyzeEntity build(AnalyzeDTO dto){
-
+        Date dateNow = new Date();
         AnalyzeEntity analyzeEntity = new AnalyzeEntity();
         analyzeEntity.setEmployee(dto.getEmployee());
-        analyzeEntity.setAnalyzeDate(dto.getTime());
+        analyzeEntity.setAnalyzeDate(dateNow);
         analyzeEntity.setComplexity(dto.getComplexity());
         analyzeEntity.setCost(dto.getCost());
-        analyzeEntity.setStatus(dto.getStatus());
-        analyzeEntity.setTask(dto.getTask());
-        analyzeEntity.setPriority(dto.getPriority());
+        analyzeEntity.setStatus("PROCESSING BY CLIENT");
         analyzeEntity.setValue(dto.getValue());
-        if(dto.getResource() == null){
-            var result = new Long(0);
-            analyzeEntity.setResource(result);
-        }   
-        analyzeEntity.setResource(dto.getResource());
+        analyzeEntity.setAnalyzeEstimate(dto.getEstimate());
+        analyzeEntity.setProject(dto.getProject());
        
         return analyzeEntity ;
     }
@@ -70,8 +64,6 @@ public class AnalyzeService implements CrudService<AnalyzeEntity>{
             return build(result) ;
     
 }
-
-
 
 
 public List<AnalyzeDTO> findByTaskId(Long task) {
@@ -117,6 +109,21 @@ public List<AnalyzeDTO> findAnalysisByEmployeeAndStatus(Long id , String status)
     public AnalyzeDTO findAnalyzeById(Long id){
         AnalyzeEntity result = analyzeRepository.findAnalyzeById(id);
         return build(result) ;
+    }
+
+
+    public List<AnalyzeDTO> findAnalysisByProjectId(Long id){
+        
+        if(id != null){
+            List<AnalyzeEntity> listResult = analyzeRepository.findAnalysisByProjectId(id);
+        List<AnalyzeDTO> listAnalyzeDTO = new ArrayList<>();
+        
+        for(AnalyzeEntity entity : listResult){
+            listAnalyzeDTO.add(build(entity));
+        }
+        return listAnalyzeDTO ;
+        }
+        return null ;
     }
     
     @Override

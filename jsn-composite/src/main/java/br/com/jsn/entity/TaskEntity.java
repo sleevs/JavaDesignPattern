@@ -21,10 +21,12 @@ public class TaskEntity {
     private String functional ;
     @Column(name="task_requirements")
     private String requirements ;
-    @Column(name="project_id")
-    private Long project ;
+    @Column(name="analyze_id")
+    private Long analyzeId ;
     @Column(name="task_type")
     private String taskType ;
+    @Column(name="task_status")
+    private String taskStatus ;
 
 
     public TaskEntity(){}
@@ -69,17 +71,6 @@ public class TaskEntity {
         this.requirements = requirements;
     }
 
-
-    public Long getProject() {
-        return project;
-    }
-
-
-    public void setProject(Long project) {
-        this.project = project;
-    }
-
-
     public String getTaskType() {
         return taskType;
     }
@@ -87,6 +78,26 @@ public class TaskEntity {
 
     public void setTaskType(String taskType) {
         this.taskType = taskType;
+    }
+
+
+    public Long getAnalyzeId() {
+        return analyzeId;
+    }
+
+
+    public void setAnalyzeId(Long analyzeId) {
+        this.analyzeId = analyzeId;
+    }
+
+
+    public String getTaskStatus() {
+        return taskStatus;
+    }
+
+
+    public void setTaskStatus(String taskStatus) {
+        this.taskStatus = taskStatus;
     }
 
     

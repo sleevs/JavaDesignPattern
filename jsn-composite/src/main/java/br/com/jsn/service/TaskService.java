@@ -18,21 +18,20 @@ public class TaskService implements CrudService<TaskEntity>{
 
     @Autowired
     private TaskRepository taskRepository;
-    //
-    //
-
+   
 
     public TaskDTO build(TaskEntity e){
 
         
-        TaskDTO task = new TaskDTO();
-        task.setDescription(e.getDescription());
-        task.setRequirements(e.getRequirements());
-        task.setFunctional(e.getFunctional());
-        task.setProject(e.getProject());
-        task.setType(e.getTaskType());
-        task.setId(e.getTaskId());
-        return task ;
+        TaskDTO taskDto = new TaskDTO();
+        taskDto.setDescription(e.getDescription());
+        taskDto.setRequirements(e.getRequirements());
+        taskDto.setFunctional(e.getFunctional());
+        taskDto.setAnalyze(e.getAnalyzeId());
+        taskDto.setId(e.getTaskId());
+        taskDto.setType(e.getTaskType());
+        taskDto.setStatus(e.getTaskStatus());
+        return taskDto ;
     }
 
 
@@ -53,22 +52,18 @@ public class TaskService implements CrudService<TaskEntity>{
         taskEntity.setDescription(dto.getDescription());
         taskEntity.setFunctional(dto.getFunctional());
         taskEntity.setRequirements(dto.getRequirements());
+        taskEntity.setAnalyzeId(dto.getAnalyze());
         taskEntity.setTaskType(dto.getType());
+        taskEntity.setTaskStatus(dto.getStatus());
         
         return taskEntity ;
     }
 
     public TaskDTO saveTask(TaskDTO dto){
 
-        TaskEntity recordTaskEntity  =  create(build(dto));
-        TaskDTO task = build(recordTaskEntity);
-
-        ManagerComposite project =new ManagerComposite("Paint");
-        TaskElement taskService = new TaskElement(task);
-        project.add(taskService);
-        project.display();
-
-        return null ;
+        TaskEntity recordTaskEntity  =  build(dto);
+        TaskEntity retornoTask = taskRepository.save(recordTaskEntity);
+        return build(retornoTask);
         
     }
   

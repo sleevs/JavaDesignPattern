@@ -32,7 +32,7 @@ public class EmployeeController {
     @GetMapping("/type-employee")
      public ResponseEntity<Object> getEmployees(@RequestParam(value = "type" , required = true) String type){
     
-          return ResponseEntity.ok(employeeService.findEmployees(type));
+          return ResponseEntity.ok(employeeService.findEmployeesByType(type));
         
      }
 }

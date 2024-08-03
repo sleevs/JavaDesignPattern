@@ -16,12 +16,14 @@ create table account (
 CREATE TABLE project (
   project_id SERIAL PRIMARY KEY, 
   project_type VARCHAR (20)  , 
-  project_description VARCHAR (50)  , 
+  project_description VARCHAR (50) , 
   project_date TIMESTAMP ,
-  project_responsability int ,
-  project_scope varchar(50) 
+  project_scope varchar(50),
+  account_id int 
 
 );
+
+
 
 
 CREATE TABLE employee (
@@ -37,13 +39,29 @@ CREATE TABLE employee (
 );
 
 
+CREATE TABLE analysis (
+  analyze_id SERIAL PRIMARY KEY, 
+  analyze_value VARCHAR (20) NOT NULL, 
+  analyze_cost VARCHAR (20) NOT NULL, 
+  analyze_estimate INT ,
+  analyze_date TIMESTAMP , 
+  analyze_complexity VARCHAR (10)  NOT NULL, 
+  employee_id INT ,
+  project_id INT ,
+  analyze_status VARCHAR (20)   
+ 
+);
+
+
 
 CREATE TABLE task (
   task_id SERIAL PRIMARY KEY, 
   task_functional VARCHAR (50)  , 
   task_description VARCHAR (50)  , 
   task_requirements VARCHAR (50)  ,
-  project_id int , 
+  analyze_id int ,
+  task_type VARCHAR (20)  ,
+  task_status VARCHAR (20) 
  
 );
 
@@ -56,20 +74,6 @@ CREATE TABLE resource (
  
 );
 
-CREATE TABLE analyzer (
-  analyze_id SERIAL PRIMARY KEY, 
-  analyze_value VARCHAR (20) NOT NULL, 
-  analyze_cost VARCHAR (20) NOT NULL, 
-  analyze_date VARCHAR (10) NOT NULL, 
-  analyze_complexity VARCHAR (10)  NOT NULL, 
-  analyze_priority VARCHAR (10)  NOT NULL,
-  analyst_id INT NOT NULL,  
-  task_id INT NOT NULL,  
-  employee_id INT ,
-  analyze_status INT NOT NULL,  
-  resource_id INT   
- 
-);
 
 
 CREATE TABLE description_action (

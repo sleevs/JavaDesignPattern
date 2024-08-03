@@ -1,15 +1,14 @@
 package br.com.jsn.dto;
 
-import br.com.jsn.composite.ManagerComponent;
-
-public class TaskDTO {  
+public class TaskDTO {
 
     private Long id;
-    private Long project;
     private String description;
     private String functional ;
     private String requirements ;
     private String type ;
+    private String status;
+    private Long analyze;
 
     public TaskDTO(){
 
@@ -39,14 +38,6 @@ public class TaskDTO {
         this.requirements = requirements;
     }
 
-    public Long getProject() {
-        return project;
-    }
-
-    public void setProject(Long project) {
-        this.project = project;
-    }
-
     public String getType() {
         return type;
     }
@@ -63,9 +54,26 @@ public class TaskDTO {
         this.id = id;
     }
 
-    
+    public Long getAnalyze() {
+        return analyze;
+    }
+
+    public void setAnalyze(Long analyze) {
+        this.analyze = analyze;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
     
-    
-    
+
+
+ 
+
+   
 }

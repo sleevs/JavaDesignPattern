@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import br.com.jsn.dto.EmployeeDTO;
 import br.com.jsn.entity.EmployeeEntity;
 import br.com.jsn.repository.EmployeeRepository;
+import br.com.jsn.util.DateUtil;
 
 @Service
 public class EmployeeService implements CrudService<EmployeeEntity> {
@@ -22,7 +23,7 @@ public class EmployeeService implements CrudService<EmployeeEntity> {
     private EmployeeRepository employeeRepository;
 
 
-    public List<EmployeeDTO> findEmployees(String param){
+    public List<EmployeeDTO> findEmployeesByType(String param){
 
         List<EmployeeDTO>  listOutput = new ArrayList<>();
         List<EmployeeEntity> listInput = employeeRepository.findEmployeesByType(param);
@@ -87,7 +88,8 @@ public  EmployeeDTO findEmployeeById(Long id){
         dto.setType(e.getEmployeeType());
         dto.setEmail(e.getEmployeeEmail());
         if(e.getEmployeeDateTime() != null){
-            dto.setDate(formatDate(e.getEmployeeDateTime()));
+            dto.setDate(DateUtil.formatDate(e.getEmployeeDateTime()));
+            
         }
         return dto;
     }
@@ -110,15 +112,7 @@ public  EmployeeDTO findEmployeeById(Long id){
     }
 
 
-    private String formatDate(Date date){
-
-        if(date != null){
-            String pattern = "dd/MM/yyyy HH:mm:ss";
-            DateFormat df = new SimpleDateFormat(pattern);
-            return df.format(date);
-        }
-        return null ;
-    }
+  
 
  
    

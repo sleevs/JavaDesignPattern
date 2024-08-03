@@ -1,29 +1,25 @@
 package br.com.jsn.dto;
 
-public class AnalyzeDTO {
+import java.util.List;
 
 
+public class AnalyzeDTO { 
+
+   
+    private List<TaskDTO> tasks;
     private Long id;
-    private String objective;
     private String value ;
     private String cost;
-    private String time;
+    private Long estimate;
     private String complexity;
-    private String priority;
     private Long employee ;
-    private Long task ;
     private String status;
-    private Long resource ;
+    private String date;
+    private Long project ;
 
     public AnalyzeDTO(){}
 
-    public String getObjective() {
-        return objective;
-    }
-
-    public void setObjective(String objective) {
-        this.objective = objective;
-    }
+  
 
     public String getValue() {
         return value;
@@ -41,14 +37,6 @@ public class AnalyzeDTO {
         this.cost = cost;
     }
 
-    public String getTime() {
-        return time;
-    }
-
-    public void setTime(String time) {
-        this.time = time;
-    }
-
     public String getComplexity() {
         return complexity;
     }
@@ -57,23 +45,6 @@ public class AnalyzeDTO {
         this.complexity = complexity;
     }
 
-    public String getPriority() {
-        return priority;
-    }
-
-    public void setPriority(String priority) {
-        this.priority = priority;
-    }
-
-    
-
-    public Long getTask() {
-        return task;
-    }
-
-    public void setTask(Long task) {
-        this.task = task;
-    }
 
     public String getStatus() {
         return status;
@@ -83,13 +54,6 @@ public class AnalyzeDTO {
         this.status = status;
     }
 
-    public Long getResource() {
-        return resource;
-    }
-
-    public void setResource(Long resource) {
-        this.resource = resource;
-    }
 
     public Long getId() {
         return id;
@@ -106,7 +70,42 @@ public class AnalyzeDTO {
     public void setEmployee(Long employee) {
         this.employee = employee;
     }
+   
+    public Long getEstimate() {
+        return estimate;
+    }
 
+    public void setEstimate(Long estimate) {
+        this.estimate = estimate;
+    }
 
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public Long getProject() {
+        return project;
+    }
+
+    public void setProject(Long project) {
+        this.project = project;
+    }
+
+    
+
+    
+    public List<TaskDTO> getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(List<TaskDTO> tasks) {
+        this.tasks = tasks;
+    }
+
+    
     
 }

@@ -1,18 +1,19 @@
 package br.com.jsn.dto;
 
+import java.util.List;
+
 public class AnalyzeRequestDTO {
 
     
     private Long employee;
     private String type;
-    private Long task;
+    private List<TaskDTO> tasks;
     private Long project;
     private String value ;
     private String cost;
-    private String time;
+    private Long estimate;
     private String complexity;
-    private String priority;
-    private Long resource;
+  
 
     public AnalyzeRequestDTO(){}
 
@@ -32,13 +33,6 @@ public class AnalyzeRequestDTO {
         this.type = type;
     }
 
-    public Long getTask() {
-        return task;
-    }
-
-    public void setTask(Long task) {
-        this.task = task;
-    }
 
     public Long getProject() {
         return project;
@@ -64,12 +58,22 @@ public class AnalyzeRequestDTO {
         this.cost = cost;
     }
 
-    public String getTime() {
-        return time;
+    
+
+    public List<TaskDTO> getTasks() {
+        return tasks;
     }
 
-    public void setTime(String time) {
-        this.time = time;
+    public void setTasks(List<TaskDTO> tasks) {
+        this.tasks = tasks;
+    }
+
+    public Long getEstimate() {
+        return estimate;
+    }
+
+    public void setEstimate(Long estimate) {
+        this.estimate = estimate;
     }
 
     public String getComplexity() {
@@ -80,21 +84,6 @@ public class AnalyzeRequestDTO {
         this.complexity = complexity;
     }
 
-    public String getPriority() {
-        return priority;
-    }
-
-    public void setPriority(String priority) {
-        this.priority = priority;
-    }
-
-    public Long getResource() {
-        return resource;
-    }
-
-    public void setResource(Long resource) {
-        this.resource = resource;
-    }
 
     
 }
