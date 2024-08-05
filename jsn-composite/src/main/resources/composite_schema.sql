@@ -11,6 +11,14 @@ create table account (
 	
 );
 
+INSERT INTO public.account
+(account_id, account_name, accout_email, account_phone, account_document)
+VALUES(nextval('account_account_id_seq'::regclass), '', '', '', '');
+
+INSERT INTO public.account
+(account_id, account_name, accout_email, account_phone, account_document)
+VALUES(nextval('account_account_id_seq'::regclass), 'James', 'james@gmail.com', '21987654123', '12345678996');
+
 
 
 CREATE TABLE project (
@@ -23,6 +31,16 @@ CREATE TABLE project (
 
 );
 
+INSERT INTO public.project
+(project_id, project_type, project_description, project_date, project_scope, account_id)
+VALUES(nextval('project_project_id_seq'::regclass), 'Construção', 'Costruir uma casa de dois comodos',  'Construção', 1);
+
+
+SELECT * FROM project
+FULL JOIN analysis
+ON project.project_id = analysis.project_id
+FULL JOIN task 
+ON  analysis.analyze_id = task.analyze_id ;
 
 
 
@@ -38,6 +56,10 @@ CREATE TABLE employee (
   employee_create TIMESTAMP 
 );
 
+INSERT INTO public.employee
+(employee_id, employee_name, employee_type, employee_phone, employee_email, employee_experience, employee_skill, employee_certification, employee_create)
+VALUES(nextval('employee_employee_id_seq'::regclass), '', '', '', '', '', '', '', '');
+
 
 CREATE TABLE analysis (
   analyze_id SERIAL PRIMARY KEY, 
@@ -52,6 +74,10 @@ CREATE TABLE analysis (
  
 );
 
+INSERT INTO public.analysis
+(analyze_id, analyze_value, analyze_cost, analyze_estimate, analyze_date, analyze_complexity, employee_id, project_id, analyze_status)
+VALUES(nextval('analysis_analyze_id_seq'::regclass), '', '', 0, '', '', 0, 0, '');
+
 
 
 CREATE TABLE task (
@@ -64,6 +90,10 @@ CREATE TABLE task (
   task_status VARCHAR (20) 
  
 );
+
+INSERT INTO public.task
+(task_id, task_functional, task_description, task_requirements, analyze_id, task_type, task_status)
+VALUES(nextval('task_task_id_seq'::regclass), '', '', '', 0, '', '');
 
 
 CREATE TABLE resource (

@@ -56,6 +56,13 @@ public class ProjectService  {
       if(id != null){
         var projectDto = buildDto(projectRepository.findProjectById(id)) ;
         List<AnalyzeDTO> listAnalysis = analyzeService.findAnalysisByProjectId(projectDto.getId());
+        
+        for(AnalyzeDTO a: listAnalysis){
+        var listResult =  taskService.findTasksByAnalysis(a.getId());
+        a.setTasks(listResult);
+        listAnalysis.add(a);
+        }
+        
         ProjectResponseDTO projectResponseDTO = new ProjectResponseDTO();
         projectResponseDTO.setProjectDTO(projectDto);
         projectResponseDTO.setListAnalysis(listAnalysis);

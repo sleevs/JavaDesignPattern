@@ -1,13 +1,7 @@
 package br.com.jsn.dto;
 
-import java.util.ArrayList;
-import java.util.List;
+public class ProjectDTO  { 
 
-import br.com.jsn.composite.Component;
-
-public class ProjectDTO  extends Component{ 
-
-    List<Component> list = new ArrayList<>();
 
     private Long account ;
     private String scope ;
@@ -94,35 +88,7 @@ public class ProjectDTO  extends Component{
         this.date = date;
     }
 
-    
-    @Override
-    public String toString() {
-        return "ProjectDTO [list=" + list + ", account=" + account + ", scope=" + scope + ", description=" + description
-                + ", type=" + type + ", Id=" + Id +  ", date=" + date + "]";
-    }
 
-
-    @Override
-    public void display() {
-        for(Component c : list){
-			c.display();
-		}
-   
-    }
-
-	public void add(Component c){
-		list.add(c);
-	}
-
-	public void remove(Component c){
-		list.remove(c);
-	}
-
-	public Component getFilhos(int param){
-		Component c ;
-		c = (Component) list.get(param);
-		return c ;
-
-	}
+ 
 
 }

@@ -99,6 +99,21 @@ public class TaskService implements CrudService<TaskEntity>{
         return build(taskRepository.findTaskById(id));
     }
 
+    public List<TaskDTO> findTasksByAnalysis(Long id){
+
+       if(id != null){
+        List<TaskEntity>  listInput =  taskRepository.findTaskByAbalysisId(id);
+        List<TaskDTO> listOutput = new ArrayList<>();
+            for(TaskEntity e : listInput){
+                listOutput.add(build(e));
+                
+            }
+        
+        return listOutput ;
+       }
+       return null ;
+    
+    }
 
     @Override
     public TaskEntity read(Long id) {
