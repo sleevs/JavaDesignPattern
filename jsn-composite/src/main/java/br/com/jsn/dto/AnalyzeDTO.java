@@ -6,16 +6,18 @@ import java.util.List;
 public class AnalyzeDTO { 
 
    
-    private List<TaskDTO> tasks;
+    
     private Long id;
+    private Long project ;
+    private Long employee ;
     private String value ;
     private String cost;
     private Long estimate;
     private String complexity;
-    private Long employee ;
     private String status;
     private String date;
-    private Long project ;
+    
+    private List<TaskDTO> tasks;
 
     public AnalyzeDTO(){}
 
