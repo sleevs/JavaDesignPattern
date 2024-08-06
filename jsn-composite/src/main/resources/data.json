@@ -83,6 +83,11 @@ http://127.0.0.1:8081/manager/analyst
 
 
 
+/*
+ACTION request
+http://127.0.0.1:8081/manager/action
+*/
+
 {
     "id":0,
     "description":"",
@@ -102,6 +107,36 @@ http://127.0.0.1:8081/manager/analyst
             "start":"",
             "end":"",
             "status":""
+        }
+    ]
+}
+
+
+
+
+{
+    "id":1,
+    
+    "actions":[
+        {     
+            "analyze":1,
+            "employee":1,
+            "task":1,
+            "objective":"ARMAÇÃO DO FERRO",
+            "resource":"FERRO",
+            "start":"02/08/2024",
+            "end":"03/08/2024",
+            "status":"DONE"
+        },
+        {     
+            "analyze":1,
+            "employee":1,
+            "task":1,
+            "objective":"INSERÇÃO DE CONCRETO NA ARMAÇÃO DE FERRO",
+            "resource":"CIMENTO E PEDRA",
+            "start":"03/08/2024",
+            "end":"05/08/2024",
+            "status":"DONE"
         }
     ]
 }
