@@ -18,6 +18,7 @@ public class AnalyzeDTO {
     private String date;
     
     private List<TaskDTO> tasks;
+ 
 
     public AnalyzeDTO(){}
 
@@ -98,8 +99,6 @@ public class AnalyzeDTO {
     }
 
     
-
-    
     public List<TaskDTO> getTasks() {
         return tasks;
     }
@@ -107,6 +106,8 @@ public class AnalyzeDTO {
     public void setTasks(List<TaskDTO> tasks) {
         this.tasks = tasks;
     }
+
+ 
 
     
     

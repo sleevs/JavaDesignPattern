@@ -1,18 +1,17 @@
 package br.com.jsn.dto;
 
-import java.util.List;
 
 public class ActionDTO {
 
-    private Long analyze;
     private Long id;
+    private Long employee ;
+    private Long task;
     private String objective;
     private String resource;
     private String start;
     private String end;
     private String status;
-    private Long employee ;
-    private Long task;
+    
  
     public ActionDTO(){}
 
@@ -76,37 +75,14 @@ public class ActionDTO {
         this.task = task;
     }
 
-
-
     public Long getId() {
         return id;
     }
-
-
 
     public void setId(Long id) {
         this.id = id;
     }
 
-
-
-
-    public Long getAnalyze() {
-        return analyze;
-    }
-
-
-
-
-    public void setAnalyze(Long analyze) {
-        this.analyze = analyze;
-    }
-
-    
-
-    
-    
-    
 
 
     

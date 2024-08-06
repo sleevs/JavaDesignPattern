@@ -1,5 +1,7 @@
 package br.com.jsn.dto;
 
+import java.util.List;
+
 public class TaskDTO {
 
     private Long id;
@@ -9,6 +11,7 @@ public class TaskDTO {
     private String type ;
     private String status;
     private Long analyze;
+    private List<ActionDTO> actions;
 
     public TaskDTO(){
 
@@ -70,8 +73,16 @@ public class TaskDTO {
         this.status = status;
     }
 
-    
+    public List<ActionDTO> getActions() {
+        return actions;
+    }
 
+    public void setActions(List<ActionDTO> actions) {
+        this.actions = actions;
+    }
+
+    
+    
 
  
 

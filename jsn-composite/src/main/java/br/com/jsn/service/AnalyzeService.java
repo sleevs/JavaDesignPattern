@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.jsn.dto.AnalyzeDTO;
-import br.com.jsn.dto.AnalyzeResponseDTO;
+
 import br.com.jsn.entity.AnalyzeEntity;
 import br.com.jsn.repository.AnalyzeRepository;
 import br.com.jsn.util.DateUtil;
@@ -66,31 +66,17 @@ public class AnalyzeService implements CrudService<AnalyzeEntity>{
 }
 
 
-public List<AnalyzeDTO> findByTaskId(Long task) {
+public AnalyzeDTO findAnalysisByTaskId(Long task) {
     
-    List<AnalyzeEntity> analysisFounded = analyzeRepository.findAnalysisByTask(task);
-    List<AnalyzeDTO> resultAnalysis = new ArrayList<>();
-    for(AnalyzeEntity e : analysisFounded){
-        resultAnalysis.add(build(e));
+    if(task != null){
+
+    AnalyzeEntity result = analyzeRepository.findAnalysisByTask(task);
+    
+    return build(result); 
     }
-
-    return resultAnalysis ;
+    return  null ;
 }
 
-public List<AnalyzeDTO> verifyAnalysis(AnalyzeResponseDTO analyzeResponseDTO) {
-
-    List<AnalyzeDTO> analyzeVerified= new ArrayList<>();
-
-    for(AnalyzeDTO dto : analyzeResponseDTO.getListAnalyzesDTO()){
-        
-       AnalyzeEntity analyzeEntity = analyzeRepository.findAnalyzeByEmployee(dto.getEmployee());
-       analyzeEntity.setStatus(dto.getStatus());
-       AnalyzeEntity result = analyzeRepository.saveAndFlush(analyzeEntity);
-       analyzeVerified.add(build(result));
-        }
-        return analyzeVerified;
-      
-}
 
 public List<AnalyzeDTO> findAnalysisByEmployeeAndStatus(Long id , String status){
 

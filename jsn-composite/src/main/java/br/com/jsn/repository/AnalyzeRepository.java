@@ -15,7 +15,7 @@ public interface AnalyzeRepository extends JpaRepository<AnalyzeEntity,Long>{
 
 
     @Query(value="SELECT * FROM analysis a WHERE a.task_id = ?" , nativeQuery=true)
-    public List<AnalyzeEntity> findAnalysisByTask(Long id);
+    public AnalyzeEntity findAnalysisByTask(Long id);
 
     @Query(value="SELECT * FROM analysis a WHERE a.employee_id = ?" , nativeQuery=true)
     public AnalyzeEntity findAnalyzeByEmployee(Long id);

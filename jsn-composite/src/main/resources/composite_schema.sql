@@ -96,6 +96,22 @@ INSERT INTO public.task
 VALUES(nextval('task_task_id_seq'::regclass), '', '', '', 0, '', '');
 
 
+
+CREATE TABLE action (
+  action_id SERIAL PRIMARY KEY, 
+  action_resource VARCHAR (50),
+  action_objective VARCHAR (50),
+  action_start VARCHAR (20), 
+  action_end VARCHAR (20), 
+  action_status VARCHAR (10), 
+  employee_id INT,
+  task_id INT  
+ 
+);
+
+
+
+
 CREATE TABLE resource (
   resource_id SERIAL PRIMARY KEY, 
   resource_description VARCHAR (50)  , 
@@ -114,13 +130,4 @@ CREATE TABLE description_action (
 );
 
 
-CREATE TABLE action (
-  action_id SERIAL PRIMARY KEY, 
-  action_resource VARCHAR (50)  , 
-  action_start VARCHAR (50)  , 
-  action_end VARCHAR (50) , 
-  action_status VARCHAR (10) , 
-  employee_id INT ,
-  task_id INT  
- 
-);
+

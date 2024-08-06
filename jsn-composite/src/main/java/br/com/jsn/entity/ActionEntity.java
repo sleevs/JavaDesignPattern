@@ -30,6 +30,8 @@ public class ActionEntity {
     private Long employee;
     @Column(name ="task_id")
     private Long taskId ;
+    @Column(name = "action_objective")
+    private String objective;
 
     public ActionEntity(){}
 
@@ -104,6 +106,20 @@ public class ActionEntity {
 
     public void setEmployee(Long employee) {
         this.employee = employee;
+    }
+
+
+
+
+    public String getObjective() {
+        return objective;
+    }
+
+
+
+
+    public void setObjective(String objective) {
+        this.objective = objective;
     }
 
     

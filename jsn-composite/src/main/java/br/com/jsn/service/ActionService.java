@@ -21,6 +21,7 @@ public class ActionService {
         action.setResource(e.getResource());
         action.setTask(e.getTaskId());
         action.setEmployee(e.getEmployee());
+        action.setObjective(e.getObjective());
         return action;
     }
     
@@ -34,6 +35,8 @@ public class ActionService {
         action.setResource(dto.getResource());
         action.setTaskId(dto.getTask());
         action.setEmployee(dto.getEmployee());
+        action.setObjective(dto.getObjective());
+        
         return action;
         
     }

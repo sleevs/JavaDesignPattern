@@ -5,15 +5,12 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.jsn.dto.ActionDTO;
 import br.com.jsn.dto.AnalyzeDTO;
 import br.com.jsn.dto.AnalyzeRequestDTO;
-import br.com.jsn.dto.AnalyzeResponseDTO;
 import br.com.jsn.dto.EmployeeDTO;
 import br.com.jsn.dto.ProjectDTO;
-import br.com.jsn.dto.ProjectResponseDTO;
-import br.com.jsn.service.EmployeeService;
+import br.com.jsn.dto.TaskDTO;
 import br.com.jsn.service.ProjectService;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -63,17 +60,25 @@ public class ProjectController {
      }
 
 
+     @Operation(summary = "professional receive a green light to make the task") 
+     @PostMapping("/action")
+     public ResponseEntity<Object> action(@RequestBody TaskDTO task ){
+   
+         return ResponseEntity.ok(projectService.processingTask(task));
+     }
+
+
      @Operation(summary = "client receives 0 or N analysis of budget")
      @PostMapping("/receiver")
      public ResponseEntity<Object> receiverAnalysis(@RequestBody ProjectDTO dto){
 
-        return ResponseEntity.ok(projectService.receiveAnalyses(dto));
+        return null;
      }
 
      @Operation(summary = "client make checking of analysis of tasks")
      @PostMapping("/verify")
-     public ResponseEntity<Object> verifyAnalysis(@RequestBody AnalyzeResponseDTO dto){
-        return ResponseEntity.ok(projectService.verifyAnalyses(dto));
+     public ResponseEntity<Object> verifyAnalysis(@RequestBody AnalyzeDTO dto){
+        return null;
      }
 
      @Operation(summary = "client choose the best budget of tasks") 
@@ -83,12 +88,7 @@ public class ProjectController {
         return ResponseEntity.ok(projectService.projectsAccept(dto));
     }
 
-    @Operation(summary = "professional receive a green light to make the task") 
-    @PostMapping("/action")
-    public ResponseEntity<Object> action(@RequestBody ActionDTO dto ){
-  
-        return ResponseEntity.ok(projectService.projectAction(dto));
-    }
+ 
 
     @Operation(summary = "professional accept the job")
     @PostMapping("/action_update")

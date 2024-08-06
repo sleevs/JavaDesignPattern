@@ -5,15 +5,12 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import br.com.jsn.composite.ManagerComposite;
-import br.com.jsn.composite.TaskElement;
 import br.com.jsn.dto.TaskDTO;
 import br.com.jsn.entity.TaskEntity;
 import br.com.jsn.repository.TaskRepository;
 
 @Service
-public class TaskService implements CrudService<TaskEntity>{
+public class TaskService {
 
 
     @Autowired
@@ -68,19 +65,7 @@ public class TaskService implements CrudService<TaskEntity>{
     }
   
 
-    @Override
-    public TaskEntity create(TaskEntity e) {
-
-            /*scenario cliente inicia projeto
-
-         * give cliente cria uma task para projeto 
-         * then enviar para analise de um profissional
-         * when profissional visualizar reponder com analise 
-        */
-       return null ;
-
-
-    }
+    
 
     public List<TaskDTO> findTasksByProject(Long id){
 
@@ -115,19 +100,17 @@ public class TaskService implements CrudService<TaskEntity>{
     
     }
 
-    @Override
-    public TaskEntity read(Long id) {
-        
-        return taskRepository.findTaskById(id);
+
+   
+    public TaskDTO update(TaskDTO dto) {
+       
+        TaskEntity  recordTaskEntity = taskRepository.findTaskById(dto.getId());
+        recordTaskEntity.setTaskStatus(dto.getStatus());
+        TaskEntity  updateTask = taskRepository.save(recordTaskEntity);
+        return build(updateTask);
     }
 
-    @Override
-    public TaskEntity update(Long id, TaskEntity e) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
-    }
-
-    @Override
+    
     public boolean delete(Long id) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'delete'");

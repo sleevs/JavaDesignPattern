@@ -79,3 +79,29 @@ http://127.0.0.1:8081/manager/analyst
     
 
 }
+
+
+
+
+{
+    "id":0,
+    "description":"",
+    "functional":"",
+    "requirements":"",
+    "type":"",
+    "status":"",
+    "analyze":0,
+    "actions":[
+        {
+            "id":0,
+            "analyze":0,
+            "employee":0,
+            "task":0,
+            "objective":"",
+            "resource":"",
+            "start":"",
+            "end":"",
+            "status":""
+        }
+    ]
+}

@@ -6,8 +6,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import br.com.jsn.dto.ActionDTO;
+import br.com.jsn.dto.ActionResponseDTO;
 import br.com.jsn.dto.AnalyzeRequestDTO;
-import br.com.jsn.dto.AnalyzeResponseDTO;
 import br.com.jsn.dto.AnalyzeDTO;
 import br.com.jsn.dto.EmployeeDTO;
 import br.com.jsn.dto.ProjectDTO;
@@ -87,7 +87,16 @@ public class ProjectService  {
   }
 
 
-     
+       /*
+         * 
+         * 
+        /*scenario - profissional realiza envio de análise para o cliente
+
+         * give profissional enviar análise para o cliente com
+         * informações detalhadas das atividades necessárias 
+         * then cliente recebe as informações com status processing client 
+       
+        */
       public AnalyzeDTO analysisOfTask(AnalyzeRequestDTO analyzeRequestDTO){
 
             EmployeeDTO employeeDTO = employeeService.findEmployeeById(analyzeRequestDTO.getEmployee());
@@ -115,21 +124,48 @@ public class ProjectService  {
         }
 
 
- 
-        public List<AnalyzeDTO> receiveAnalyses(ProjectDTO projectDto){
-     
-           List<TaskDTO> listDto = taskService.findTasksByProject(projectDto.getId());
-           List<AnalyzeDTO> analyzeDtoResult =  analyzeService.findByTaskId(listDto.get(0).getId());
-    
-            return analyzeDtoResult;
+        public ActionResponseDTO processingTask(TaskDTO task){
 
+            if(task.getId() != null){
+              TaskDTO taskDto = taskService.findTask(task.getId());
+              AnalyzeDTO  analyzeDTO = analyzeService.findAnalyzeById(taskDto.getAnalyze());
+              ProjectDTO projectDTO = buildDto(projectRepository.findProjectById(analyzeDTO.getProject()));
+              List<ActionDTO> actionResult = new ArrayList<>();
+
+              for(ActionDTO a : task.getActions()){
+                 
+                taskDto.setStatus(a.getStatus());
+                actionResult.add(actionService.createAction(a));
+              }
+            
+              TaskDTO taskResult = taskService.update(taskDto);
+              taskResult.setActions(actionResult);
+
+              //atualizar a list a de task
+              List<TaskDTO> lisTaskDTO = taskService.findTasksByAnalysis(analyzeDTO.getId());
+              for(TaskDTO t: lisTaskDTO){
+
+                if(t.getId().equals(taskResult.getId())){ 
+                  lisTaskDTO.remove(t);
+                  lisTaskDTO.add(taskResult);
+                  break;
+                }
+
+              }
+
+              analyzeDTO.setTasks(lisTaskDTO);
+              ActionResponseDTO actionResponseDTO = new ActionResponseDTO();
+              actionResponseDTO.setProject(projectDTO);
+              actionResponseDTO.setAnalysis(analyzeDTO);
+
+              return actionResponseDTO ;
+
+              }
+            
+          return null ;
         }
 
-        public List<AnalyzeDTO> verifyAnalyses(AnalyzeResponseDTO analyzeResponseDTO){
-        
-           return analyzeService.verifyAnalysis(analyzeResponseDTO);
-
-       }
+ 
 
 
         /*
@@ -151,15 +187,7 @@ public class ProjectService  {
             
         }
 
-        public ActionDTO projectAction(ActionDTO dto){
-        
-          AnalyzeDTO result = analyzeService.findAnalyzeById(dto.getAnalyze());
-          ActionDTO action = new ActionDTO();
-          
-          
-         return actionService.createAction(dto);
-              
-        }
+   
 
 
 
