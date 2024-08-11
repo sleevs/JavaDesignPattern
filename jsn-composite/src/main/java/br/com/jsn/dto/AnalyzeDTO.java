@@ -8,8 +8,8 @@ public class AnalyzeDTO {
    
     
     private Long id;
-    private Long project ;
-    private Long employee ;
+    private ProjectDTO project ;
+    private EmployeeDTO employee ;
     private String value ;
     private String cost;
     private Long estimate;
@@ -66,14 +66,7 @@ public class AnalyzeDTO {
         this.id = id;
     }
 
-    public Long getEmployee() {
-        return employee;
-    }
-
-    public void setEmployee(Long employee) {
-        this.employee = employee;
-    }
-   
+    
     public Long getEstimate() {
         return estimate;
     }
@@ -90,14 +83,7 @@ public class AnalyzeDTO {
         this.date = date;
     }
 
-    public Long getProject() {
-        return project;
-    }
-
-    public void setProject(Long project) {
-        this.project = project;
-    }
-
+    
     
     public List<TaskDTO> getTasks() {
         return tasks;
@@ -105,6 +91,30 @@ public class AnalyzeDTO {
 
     public void setTasks(List<TaskDTO> tasks) {
         this.tasks = tasks;
+    }
+
+
+
+    public ProjectDTO getProject() {
+        return project;
+    }
+
+
+
+    public void setProject(ProjectDTO project) {
+        this.project = project;
+    }
+
+
+
+    public EmployeeDTO getEmployee() {
+        return employee;
+    }
+
+
+
+    public void setEmployee(EmployeeDTO employee) {
+        this.employee = employee;
     }
 
  
