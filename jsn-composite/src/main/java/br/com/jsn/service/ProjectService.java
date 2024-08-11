@@ -16,6 +16,7 @@ import br.com.jsn.dto.TaskDTO;
 import br.com.jsn.entity.ProjectEntity;
 import br.com.jsn.repository.ProjectRepository;
 import br.com.jsn.util.DateUtil;
+import br.com.jsn.util.DtoMapper;
 
 @Service
 public class ProjectService  {
@@ -31,7 +32,9 @@ public class ProjectService  {
     @Autowired
     private ActionService actionService ;
 
-
+    @Autowired
+    private DtoMapper dtoMapper;
+   
     public Object createProject(ProjectDTO dto){
       
       if(dto.getAccount() != null){
@@ -43,7 +46,7 @@ public class ProjectService  {
       projectEntity.setProjectType(dto.getType());
       projectEntity.setProjectDate(dateNow);
       ProjectEntity newProjectEntity =   projectRepository.save(projectEntity);
-      return buildDto(newProjectEntity);
+      return dtoMapper.buildProjectDTO(newProjectEntity);
       }
                 
       return null;
@@ -54,7 +57,7 @@ public class ProjectService  {
     public ProjectResponseDTO findProjectId(Long id) {
              
       if(id != null){
-        var projectDto = buildDto(projectRepository.findProjectById(id)) ;
+        var projectDto = dtoMapper.buildProjectDTO(projectRepository.findProjectById(id)) ;
         List<AnalyzeDTO> listAnalysis = analyzeService.findAnalysisByProjectId(projectDto.getId());
         
         List<AnalyzeDTO> listAnalysisResult = new ArrayList<>();
@@ -73,12 +76,34 @@ public class ProjectService  {
      return null ;
     }
 
-  
+
+    public List<ProjectResponseDTO> findProjectAccount(Long account){
+
+      try{
+       if(account != null){
+       List<ProjectEntity> list = projectRepository.findProjectByAcountId(account);
+       List<ProjectResponseDTO> listResult = new ArrayList<>();
+       for(ProjectEntity projectEntity: list){
+        ProjectResponseDTO projectResponseDTO = new ProjectResponseDTO();
+        ProjectDTO projectDTO = dtoMapper.buildProjectDTO(projectEntity);
+        projectResponseDTO.setListAnalysis(analyzeService.findAnalysisByProjectId(projectDTO.getId()));
+        projectResponseDTO.setProjectDTO(projectDTO);
+        listResult.add(projectResponseDTO);
+        
+       }
+       return listResult ;
+      }
+      
+      }catch(Exception e){
+
+      }
+      return null ;
+    }
 
    public List<EmployeeDTO> sendTaskToEmployees(ProjectDTO projectDto){
 
     ProjectEntity project  = projectRepository.findProjectById(projectDto.getId());
-    ProjectDTO newProjectDto =  buildDto(project);
+    ProjectDTO newProjectDto =  dtoMapper.buildProjectDTO(project);
     List<TaskDTO> listDto = taskService.findTasksByProject(newProjectDto.getId());
     List<EmployeeDTO> listEmployeeDTO =  employeeService.findEmployeesByType(listDto.get(0).getType());
 
@@ -102,7 +127,7 @@ public class ProjectService  {
             EmployeeDTO employeeDTO = employeeService.findEmployeeById(analyzeRequestDTO.getEmployee());
              List<TaskDTO> taskList = new ArrayList<>();
              AnalyzeDTO analyzeDTOInput = new AnalyzeDTO();
-             analyzeDTOInput.setEmployee(employeeDTO.getId());
+             analyzeDTOInput.setEmployee(employeeDTO);
              analyzeDTOInput.setComplexity(analyzeRequestDTO.getComplexity());
              analyzeDTOInput.setCost(analyzeRequestDTO.getCost());
              analyzeDTOInput.setEstimate(analyzeRequestDTO.getEstimate());
@@ -129,7 +154,7 @@ public class ProjectService  {
             if(task.getId() != null){
               TaskDTO taskDto = taskService.findTask(task.getId());
               AnalyzeDTO  analyzeDTO = analyzeService.findAnalyzeById(taskDto.getAnalyze());
-              ProjectDTO projectDTO = buildDto(projectRepository.findProjectById(analyzeDTO.getProject()));
+              ProjectDTO projectDTO = dtoMapper.buildProjectDTO(projectRepository.findProjectById(analyzeDTO.getProject().getId()));
               List<ActionDTO> actionResult = new ArrayList<>();
 
               for(ActionDTO a : task.getActions()){
@@ -168,6 +193,21 @@ public class ProjectService  {
  
 
 
+        public void findActionByTasks(List<TaskDTO> task){
+
+          List<ActionDTO> actionResult = new ArrayList<>();
+          
+          for(TaskDTO t : task){
+
+            for(ActionDTO a : t.getActions()){
+                 
+              t.setStatus(a.getStatus());
+              actionResult.add(actionService.createAction(a));
+            }
+          }
+
+        }
+
         /*
          * 
          * 
@@ -195,20 +235,6 @@ public class ProjectService  {
           
          return actionService.createAction(dto);
               
-        }
-
-
-        public ProjectDTO buildDto(ProjectEntity e) {
-          
-          ProjectDTO projectDto = new ProjectDTO();
-          projectDto.setAccount(e.getAccountId());
-          projectDto.setScope(e.getProjectScope());
-          projectDto.setDescription(e.getProjectDescription());
-          projectDto.setType(e.getProjectType());
-          projectDto.setId(e.getProjectId());
-          projectDto.setDate(DateUtil.formatDate(e.getProjectDate()));
-       
-          return projectDto;
         }
 
 

@@ -5,6 +5,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -80,28 +82,22 @@ public class TaskEntity {
         this.taskType = taskType;
     }
 
-
-    public Long getAnalyzeId() {
-        return analyzeId;
-    }
-
-
-    public void setAnalyzeId(Long analyzeId) {
-        this.analyzeId = analyzeId;
-    }
-
-
+    
     public String getTaskStatus() {
         return taskStatus;
     }
-
 
     public void setTaskStatus(String taskStatus) {
         this.taskStatus = taskStatus;
     }
 
-    
-    
-    
+    public Long getAnalyzeId() {
+        return analyzeId;
+    }
+
+    public void setAnalyzeId(Long analyzeId) {
+        this.analyzeId = analyzeId;
+    }
+
     
 }

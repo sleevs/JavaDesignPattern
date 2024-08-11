@@ -8,6 +8,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -27,10 +30,12 @@ public class AnalyzeEntity {
     private String cost;
     @Column(name="analyze_complexity")
     private String complexity;
-    @Column(name="employee_id")
-    private Long employee ;
-    @Column(name="project_id")
-    private Long project ;
+    @OneToOne
+    @JoinColumn(name="employee_id")
+    private EmployeeEntity employee ;
+    @ManyToOne
+    @JoinColumn(name="project_id")
+    private ProjectEntity project ;
     @Column(name="analyze_status")
     private String status;
    
@@ -89,14 +94,6 @@ public class AnalyzeEntity {
         this.status = status;
     }
 
-    public Long getEmployee() {
-        return employee;
-    }
-
-    public void setEmployee(Long employee) {
-        this.employee = employee;
-    }
-
     public Date getAnalyzeDate() {
         return analyzeDate;
     }
@@ -113,19 +110,25 @@ public class AnalyzeEntity {
         this.analyzeEstimate = analyzeEstimate;
     }
 
-
-
-    public Long getProject() {
+    public ProjectEntity getProject() {
         return project;
     }
 
-
-
-    public void setProject(Long project) {
+    public void setProject(ProjectEntity project) {
         this.project = project;
     }
 
-    
+
+
+    public EmployeeEntity getEmployee() {
+        return employee;
+    }
+
+
+
+    public void setEmployee(EmployeeEntity employee) {
+        this.employee = employee;
+    }
 
     
     

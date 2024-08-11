@@ -2,12 +2,12 @@ package br.com.jsn.service;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import br.com.jsn.dto.TaskDTO;
 import br.com.jsn.entity.TaskEntity;
 import br.com.jsn.repository.TaskRepository;
+import br.com.jsn.util.DtoMapper;
 
 @Service
 public class TaskService {
@@ -15,27 +15,18 @@ public class TaskService {
 
     @Autowired
     private TaskRepository taskRepository;
-   
 
-    public TaskDTO build(TaskEntity e){
-
-        
-        TaskDTO taskDto = new TaskDTO();
-        taskDto.setDescription(e.getDescription());
-        taskDto.setRequirements(e.getRequirements());
-        taskDto.setFunctional(e.getFunctional());
-        taskDto.setAnalyze(e.getAnalyzeId());
-        taskDto.setId(e.getTaskId());
-        taskDto.setType(e.getTaskType());
-        taskDto.setStatus(e.getTaskStatus());
-        return taskDto ;
-    }
+    @Autowired
+    private DtoMapper dtoMapper;
+    
+    @Autowired
+    private ActionService actionService;
 
 
     public TaskDTO buildAndSave(TaskEntity e){
 
         TaskEntity newTask = taskRepository.save(e);
-        TaskDTO taskdDto = build(newTask);
+        TaskDTO taskdDto = dtoMapper.buildTaskDTO(newTask);
 
         return taskdDto ;
         
@@ -43,24 +34,12 @@ public class TaskService {
 
     
 
-    public TaskEntity build(TaskDTO dto){
-
-        TaskEntity taskEntity = new TaskEntity();
-        taskEntity.setDescription(dto.getDescription());
-        taskEntity.setFunctional(dto.getFunctional());
-        taskEntity.setRequirements(dto.getRequirements());
-        taskEntity.setAnalyzeId(dto.getAnalyze());
-        taskEntity.setTaskType(dto.getType());
-        taskEntity.setTaskStatus(dto.getStatus());
-        
-        return taskEntity ;
-    }
 
     public TaskDTO saveTask(TaskDTO dto){
 
-        TaskEntity recordTaskEntity  =  build(dto);
+        TaskEntity recordTaskEntity  =  dtoMapper.buildTaskEntity(dto);
         TaskEntity retornoTask = taskRepository.save(recordTaskEntity);
-        return build(retornoTask);
+        return dtoMapper.buildTaskDTO(retornoTask);
         
     }
   
@@ -72,7 +51,10 @@ public class TaskService {
        List<TaskEntity>  listInput = taskRepository.findTasksByProjectId(id);
        List<TaskDTO> listOutput = new ArrayList<>();
             for(TaskEntity e : listInput){
-                listOutput.add(build(e));
+                var listAction = actionService.findActionsByTask(e.getTaskId());
+                TaskDTO dto = dtoMapper.buildTaskDTO(e);
+                dto.setActions(listAction);
+                listOutput.add(dto);
                 
             }
         
@@ -81,16 +63,20 @@ public class TaskService {
 
     public TaskDTO findTask(Long id) {
         
-        return build(taskRepository.findTaskById(id));
+        return dtoMapper.buildTaskDTO(taskRepository.findTaskById(id));
     }
+
 
     public List<TaskDTO> findTasksByAnalysis(Long id){
 
        if(id != null){
-        List<TaskEntity>  listInput =  taskRepository.findTaskByAbalysisId(id);
+        List<TaskEntity>  listInput =  taskRepository.findTaskByAnalysisId(id);
         List<TaskDTO> listOutput = new ArrayList<>();
             for(TaskEntity e : listInput){
-                listOutput.add(build(e));
+                var listAction = actionService.findActionsByTask(e.getTaskId());
+                TaskDTO dto = dtoMapper.buildTaskDTO(e);
+                dto.setActions(listAction);
+                listOutput.add(dto);
                 
             }
         
@@ -101,13 +87,12 @@ public class TaskService {
     }
 
 
-   
     public TaskDTO update(TaskDTO dto) {
        
         TaskEntity  recordTaskEntity = taskRepository.findTaskById(dto.getId());
         recordTaskEntity.setTaskStatus(dto.getStatus());
         TaskEntity  updateTask = taskRepository.save(recordTaskEntity);
-        return build(updateTask);
+        return dtoMapper.buildTaskDTO(updateTask);
     }
 
     

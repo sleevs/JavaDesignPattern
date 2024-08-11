@@ -8,7 +8,7 @@ public class AnalyzeRequestDTO {
     private Long employee;
     private String type;
     private List<TaskDTO> tasks;
-    private Long project;
+    private ProjectDTO project;
     private String value ;
     private String cost;
     private Long estimate;
@@ -32,15 +32,7 @@ public class AnalyzeRequestDTO {
     public void setType(String type) {
         this.type = type;
     }
-
-
-    public Long getProject() {
-        return project;
-    }
-
-    public void setProject(Long project) {
-        this.project = project;
-    }
+    
 
     public String getValue() {
         return value;
@@ -82,6 +74,14 @@ public class AnalyzeRequestDTO {
 
     public void setComplexity(String complexity) {
         this.complexity = complexity;
+    }
+
+    public ProjectDTO getProject() {
+        return project;
+    }
+
+    public void setProject(ProjectDTO project) {
+        this.project = project;
     }
 
 

@@ -56,15 +56,7 @@ public class TaskDTO {
     public void setId(Long id) {
         this.id = id;
     }
-
-    public Long getAnalyze() {
-        return analyze;
-    }
-
-    public void setAnalyze(Long analyze) {
-        this.analyze = analyze;
-    }
-
+    
     public String getStatus() {
         return status;
     }
@@ -81,10 +73,15 @@ public class TaskDTO {
         this.actions = actions;
     }
 
-    
-    
+    public Long getAnalyze() {
+        return analyze;
+    }
 
- 
+    public void setAnalyze(Long analyze) {
+        this.analyze = analyze;
+    }
+
+    
 
    
 }

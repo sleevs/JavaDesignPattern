@@ -12,6 +12,7 @@ import br.com.jsn.service.ProjectService;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,7 +27,7 @@ public class ProjectController {
     @Autowired
     private ProjectService projectService;
 
-   
+    @CrossOrigin(origins = "http://localhost:4200") // Permite CORS apenas para o frontend especificado
     @Operation(summary = "save a project")
     @PostMapping("/project")
      public ResponseEntity<Object> createProject(@RequestBody ProjectDTO requestDTO){
@@ -36,6 +37,7 @@ public class ProjectController {
      }
 
      @Operation(summary = "find project by ID")
+     @CrossOrigin(origins = "http://localhost:4200") // Permite CORS apenas para o frontend especificado
      @GetMapping("/find_project")
       public ResponseEntity<Object> findProject(@RequestParam(value= "id") Long param){
      
@@ -43,6 +45,15 @@ public class ProjectController {
          
       }
 
+
+     @Operation(summary = "find project by Account")
+     @CrossOrigin(origins = "http://localhost:4200") // Permite CORS apenas para o frontend especificado
+     @GetMapping("/find_project_account")
+      public ResponseEntity<Object> findProjectAccount(@RequestParam(value= "account") Long param){
+     
+          return ResponseEntity.ok(projectService.findProjectAccount(param));
+         
+      }
      
      @Operation(summary = "system send the task to N employees to analysis")
      @PostMapping("/send")
@@ -81,7 +92,7 @@ public class ProjectController {
         return null;
      }
 
-     @Operation(summary = "client choose the best budget of tasks") 
+    @Operation(summary = "client choose the best budget of tasks") 
     @PostMapping("/accept_projects")
     public ResponseEntity<Object> acceptProjects(@RequestBody EmployeeDTO dto){
   

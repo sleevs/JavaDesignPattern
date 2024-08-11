@@ -1,67 +1,39 @@
 package br.com.jsn.service;
 
 import java.util.ArrayList;
-import java.util.Date;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.jsn.dto.AnalyzeDTO;
-
+import br.com.jsn.dto.ProjectDTO;
+import br.com.jsn.dto.TaskDTO;
 import br.com.jsn.entity.AnalyzeEntity;
 import br.com.jsn.repository.AnalyzeRepository;
-import br.com.jsn.util.DateUtil;
+import br.com.jsn.util.DtoMapper;
 
 
 @Service
-public class AnalyzeService implements CrudService<AnalyzeEntity>{ 
+public class AnalyzeService {
 
 
     @Autowired
     private AnalyzeRepository  analyzeRepository;
+    
+    @Autowired
+    private DtoMapper dtoMapper;
 
-
-       private AnalyzeDTO build(AnalyzeEntity e){
-
-        AnalyzeDTO analyzeDTO = new AnalyzeDTO();
-        analyzeDTO.setEmployee(e.getEmployee());
-        analyzeDTO.setComplexity(e.getComplexity());
-        analyzeDTO.setCost(e.getCost());
-        analyzeDTO.setStatus(e.getStatus());
-        analyzeDTO.setValue(e.getValue());
-        analyzeDTO.setId(e.getAnalyzeId());
-        analyzeDTO.setEstimate(e.getAnalyzeEstimate());
-        analyzeDTO.setProject(e.getProject());
-        
-        if(e.getAnalyzeDate() != null){
-            analyzeDTO.setDate(DateUtil.formatDate(e.getAnalyzeDate()));
-        }
-        
-        return analyzeDTO ;
-    }
-
-    private AnalyzeEntity build(AnalyzeDTO dto){
-        Date dateNow = new Date();
-        AnalyzeEntity analyzeEntity = new AnalyzeEntity();
-        analyzeEntity.setEmployee(dto.getEmployee());
-        analyzeEntity.setAnalyzeDate(dateNow);
-        analyzeEntity.setComplexity(dto.getComplexity());
-        analyzeEntity.setCost(dto.getCost());
-        analyzeEntity.setStatus("PROCESSING BY CLIENT");
-        analyzeEntity.setValue(dto.getValue());
-        analyzeEntity.setAnalyzeEstimate(dto.getEstimate());
-        analyzeEntity.setProject(dto.getProject());
-       
-        return analyzeEntity ;
-    }
+    @Autowired
+    private TaskService taskService;
 
     public AnalyzeDTO saveAnalyze(AnalyzeDTO dto){
 
-            AnalyzeEntity newAnalyzeEntity = build(dto);
+            AnalyzeEntity newAnalyzeEntity = dtoMapper.buildAnalyzeEntity(dto);
             var result =  analyzeRepository.save(newAnalyzeEntity);
   
-            return build(result) ;
+            return dtoMapper.buildAnalyzeDTO(result) ;
     
 }
 
@@ -72,7 +44,7 @@ public AnalyzeDTO findAnalysisByTaskId(Long task) {
 
     AnalyzeEntity result = analyzeRepository.findAnalysisByTask(task);
     
-    return build(result); 
+    return dtoMapper.buildAnalyzeDTO(result); 
     }
     return  null ;
 }
@@ -85,7 +57,7 @@ public List<AnalyzeDTO> findAnalysisByEmployeeAndStatus(Long id , String status)
 
     for(AnalyzeEntity a : list){
 
-        result.add(build(a));
+        result.add(dtoMapper.buildAnalyzeDTO(a));
     }
     return result ;
 }
@@ -94,45 +66,36 @@ public List<AnalyzeDTO> findAnalysisByEmployeeAndStatus(Long id , String status)
 
     public AnalyzeDTO findAnalyzeById(Long id){
         AnalyzeEntity result = analyzeRepository.findAnalyzeById(id);
-        return build(result) ;
+        var list = taskService.findTasksByAnalysis(result.getAnalyzeId());
+        List<TaskDTO> listTask = new ArrayList<>();
+        AnalyzeDTO analysis = dtoMapper.buildAnalyzeDTO(result) ;
+
+        for(TaskDTO taskDTO : list){
+            listTask.add(taskDTO);
+        }
+        analysis.setTasks(listTask);
+        return analysis ;
     }
 
 
     public List<AnalyzeDTO> findAnalysisByProjectId(Long id){
         
         if(id != null){
-            List<AnalyzeEntity> listResult = analyzeRepository.findAnalysisByProjectId(id);
+        List<AnalyzeEntity> listResult = analyzeRepository.findAnalysisByProjectId(id);
         List<AnalyzeDTO> listAnalyzeDTO = new ArrayList<>();
         
         for(AnalyzeEntity entity : listResult){
-            listAnalyzeDTO.add(build(entity));
+           var taskList = taskService.findTasksByAnalysis(entity.getAnalyzeId());
+           AnalyzeDTO analyzeDTO = dtoMapper.buildAnalyzeDTO(entity);
+           analyzeDTO.setTasks(taskList);
+           listAnalyzeDTO.add(analyzeDTO);
         }
         return listAnalyzeDTO ;
         }
         return null ;
     }
-    
-    @Override
-    public AnalyzeEntity create(AnalyzeEntity e) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'create'");
-    }
 
-    @Override
-    public AnalyzeEntity read(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'read'");
-    }
-
-    @Override
-    public AnalyzeEntity update(Long id, AnalyzeEntity e) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
-    }
-
-    @Override
-    public boolean delete(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'delete'");
-    }
+  
 }
+
+    
