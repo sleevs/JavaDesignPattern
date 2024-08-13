@@ -17,7 +17,6 @@ public class AnalysisController {
     private AnalyzeService analyzeService;
 
      @Operation(summary = "find analysis by Account")
-     @CrossOrigin(origins = "http://localhost:4200") 
      @GetMapping("/find_analysis_by_id")
       public ResponseEntity<Object> findAnalysisById(@RequestParam(value= "id") Long param){
      

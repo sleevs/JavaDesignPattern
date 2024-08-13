@@ -47,6 +47,17 @@ public  EmployeeDTO findEmployeeById(Long id){
    
 }
 
+public List<EmployeeDTO> listEmployees(){
+
+    List<EmployeeDTO>  listOutput = new ArrayList<>();
+    List<EmployeeEntity> listInput = employeeRepository.findAll();
+    for(EmployeeEntity e : listInput){
+        listOutput.add(dtoMapper.buildEmployeeDTO(e));
+    }
+
+    return listOutput ;
+}
+
 
     @Override
     public EmployeeEntity create(EmployeeEntity e) {

@@ -4,38 +4,29 @@ import java.util.List;
 
 public class ProjectResponseDTO {
 
-    private ProjectDTO projectDTO ;
-    private List<AnalyzeDTO> listAnalysis;
+    private ProjectDTO project ;
+    private List<AnalyzeDTO> analysis;
 
     public ProjectResponseDTO(){
 
     }
 
-    
-
-    public List<AnalyzeDTO> getListAnalysis() {
-        return listAnalysis;
+    public ProjectDTO getProject() {
+        return project;
     }
 
-
-
-    public void setListAnalysis(List<AnalyzeDTO> listAnalysis) {
-        this.listAnalysis = listAnalysis;
+    public void setProject(ProjectDTO project) {
+        this.project = project;
     }
 
-
-
-    public ProjectDTO getProjectDTO() {
-        return projectDTO;
+    public List<AnalyzeDTO> getAnalysis() {
+        return analysis;
     }
 
-
-
-    public void setProjectDTO(ProjectDTO projectDTO) {
-        this.projectDTO = projectDTO;
+    public void setAnalysis(List<AnalyzeDTO> analysis) {
+        this.analysis = analysis;
     }
 
-    
     
     
     

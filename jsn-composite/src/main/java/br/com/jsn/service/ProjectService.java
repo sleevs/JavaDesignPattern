@@ -15,7 +15,6 @@ import br.com.jsn.dto.ProjectResponseDTO;
 import br.com.jsn.dto.TaskDTO;
 import br.com.jsn.entity.ProjectEntity;
 import br.com.jsn.repository.ProjectRepository;
-import br.com.jsn.util.DateUtil;
 import br.com.jsn.util.DtoMapper;
 
 @Service
@@ -69,8 +68,8 @@ public class ProjectService  {
         }
         
         ProjectResponseDTO projectResponseDTO = new ProjectResponseDTO();
-        projectResponseDTO.setProjectDTO(projectDto);
-        projectResponseDTO.setListAnalysis(listAnalysisResult);
+        projectResponseDTO.setProject(projectDto);
+        projectResponseDTO.setAnalysis(listAnalysisResult);
         return projectResponseDTO ;
       }
      return null ;
@@ -86,8 +85,8 @@ public class ProjectService  {
        for(ProjectEntity projectEntity: list){
         ProjectResponseDTO projectResponseDTO = new ProjectResponseDTO();
         ProjectDTO projectDTO = dtoMapper.buildProjectDTO(projectEntity);
-        projectResponseDTO.setListAnalysis(analyzeService.findAnalysisByProjectId(projectDTO.getId()));
-        projectResponseDTO.setProjectDTO(projectDTO);
+        projectResponseDTO.setAnalysis(analyzeService.findAnalysisByProjectId(projectDTO.getId()));
+        projectResponseDTO.setProject(projectDTO);
         listResult.add(projectResponseDTO);
         
        }

@@ -30,9 +30,17 @@ public class EmployeeController {
 
     @Operation(summary = "list employees by type")
     @GetMapping("/type-employee")
-     public ResponseEntity<Object> getEmployees(@RequestParam(value = "type" , required = true) String type){
+     public ResponseEntity<Object> getEmployeesByType(@RequestParam(value = "type" , required = true) String type){
     
           return ResponseEntity.ok(employeeService.findEmployeesByType(type));
+        
+     }
+
+    @Operation(summary = "list employees")
+    @GetMapping("/employees")
+     public ResponseEntity<Object> getEmployees(){
+    
+          return ResponseEntity.ok(employeeService.listEmployees());
         
      }
 }

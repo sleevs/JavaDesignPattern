@@ -27,7 +27,6 @@ public class ProjectController {
     @Autowired
     private ProjectService projectService;
 
-    @CrossOrigin(origins = "http://localhost:4200") // Permite CORS apenas para o frontend especificado
     @Operation(summary = "save a project")
     @PostMapping("/project")
      public ResponseEntity<Object> createProject(@RequestBody ProjectDTO requestDTO){
@@ -37,7 +36,6 @@ public class ProjectController {
      }
 
      @Operation(summary = "find project by ID")
-     @CrossOrigin(origins = "http://localhost:4200") // Permite CORS apenas para o frontend especificado
      @GetMapping("/find_project")
       public ResponseEntity<Object> findProject(@RequestParam(value= "id") Long param){
      
@@ -47,7 +45,6 @@ public class ProjectController {
 
 
      @Operation(summary = "find project by Account")
-     @CrossOrigin(origins = "http://localhost:4200") // Permite CORS apenas para o frontend especificado
      @GetMapping("/find_project_account")
       public ResponseEntity<Object> findProjectAccount(@RequestParam(value= "account") Long param){
      
