@@ -38,7 +38,7 @@ Pattern are not the silver bullet but they can be combined and used in concert t
   
   -  Composite
 
-     [Demo to manager project API which elements of a composite pattern can be represented as a project structure.](https://github.com/sleevs/JavaDesignPattern/tree/master/jsn-composite) 
+     [Demo to manager project API which each component has a sub-elements representing a structure of project sach as project , analysis ,tasks and actions respectively .](https://github.com/sleevs/JavaDesignPattern/tree/master/jsn-composite) 
 
   
   -  Decorator - TODO
