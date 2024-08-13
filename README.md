@@ -36,7 +36,7 @@ Pattern are not the silver bullet but they can be combined and used in concert t
   
   -  Bridge - TODO
   
-  -  Composite
+  -  Composite -DOING
 
      [Demo to manager project API which each component has a sub-elements representing a structure of project sach as project , analysis ,tasks and actions respectively .](https://github.com/sleevs/JavaDesignPattern/tree/master/jsn-composite) 
 
