@@ -74,6 +74,10 @@ http://localhost:8080/manager/swagger-ui/index.html
 
 ![API do Sistema](dir/manage_img.png)
 
+![API do Sistema](dir/manage_img_2.png)
+
+![API do Sistema](dir/manage_img_3.png)
+
 
 #### Contributing
 
