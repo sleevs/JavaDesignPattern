@@ -72,6 +72,8 @@ Access the application documentation via Swagger at:
 
 http://localhost:8080/manager/swagger-ui/index.html
 
+![API do Sistema](dir/manage_img.png)
+
 
 #### Contributing
 
