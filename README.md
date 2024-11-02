@@ -52,8 +52,10 @@ Pattern are not the silver bullet but they can be combined and used in concert t
 ### Behavioral patterns
 
   -  Interpreter - TODO
-     
-  -  Chain of responsibility - TODO
+      serviço que recupera todas as issues de um determinado repositório no github e retorna um JSON
+  -  Chain of responsibility DONE
+    
+     [In this example implements a chain of requests to retrieve issues from a GitHub repository](https://github.com/sleevs/jsn-issues-analysis)
   
   -  Command - DONE
   
