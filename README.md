@@ -2,7 +2,7 @@
 
 This repository contains practical implementations of classical software design patterns using Java.
 
-The goal of this project is to study reusable software architecture solutions and demonstrate how design patterns can be applied to real-world scenarios such as APIs, distributed systems, notifications, and enterprise applications.
+The goal of this project is to study reusable software architecture solutions and demonstrate how design patterns can be applied in real-world scenarios such as APIs, distributed systems, notifications, and enterprise applications.
 
 ---
 
@@ -24,35 +24,45 @@ This repository explores both theoretical concepts and practical implementations
 # Creational Patterns
 
 ## Factory Method
-Logistics API implementing fare calculation strategies.
+**Problem:** Different strategies for calculating shipping rates need to be implemented in an extensible way.  
+**Pattern:** Factory Method  
+**Solution:** Logistics API that dynamically instantiates fare calculators.  
 
 Status: ✅ DONE
 
 ---
 
 ## Abstract Factory
-Payment API demonstrating creation of related payment objects.
+**Problem:** Creating multiple related objects (payments) without coupling to concrete implementations.  
+**Pattern:** Abstract Factory  
+**Solution:** Payment API that creates compatible payment objects.  
 
 Status: ✅ DONE
 
 ---
 
 ## Builder
-Notification API supporting multiple notification configurations.
+**Problem:** Notifications require multiple configuration and delivery options.  
+**Pattern:** Builder  
+**Solution:** Notification API that allows building various notification configurations fluently.  
 
 Status: ✅ DONE
 
 ---
 
 ## Prototype
-Marketplace catalog cloning example.
+**Problem:** Marketplace catalog needs to allow copies of complex objects without recreating them from scratch.  
+**Pattern:** Prototype  
+**Solution:** Implementation that clones catalog objects for reuse.  
 
 Status: ✅ DONE
 
 ---
 
 ## Singleton
-Global shared instance implementation.
+**Problem:** A global shared instance is needed for configuration or central resources.  
+**Pattern:** Singleton  
+**Solution:** Global configuration manager accessible across the application.  
 
 Status: 🚧 TODO
 
@@ -61,54 +71,63 @@ Status: 🚧 TODO
 # Structural Patterns
 
 ## Adapter
-Compatibility layer between incompatible interfaces.
+**Problem:** A modern API needs to integrate with an incompatible legacy service (e.g., SOAP).  
+**Pattern:** Adapter  
+**Solution:** Adapter layer that converts REST calls into compatible SOAP requests.  
 
 Status: 🚧 TODO
 
 ---
 
 ## Bridge
-Decouples abstraction from implementation.
+**Problem:** Notifications must support multiple channels and independent providers.  
+**Pattern:** Bridge  
+**Solution:** Separate the notification abstraction from the provider implementation, allowing independent evolution.  
 
 Status: 🚧 TODO
 
 ---
 
 ## Composite
-Project management API representing hierarchical structures:
-
-- Project
-- Analysis
-- Tasks
-- Actions
+**Problem:** Project management platform needs to represent hierarchical structures (Projects → Analyses → Tasks → Actions).  
+**Pattern:** Composite  
+**Solution:** All project elements are treated as tree components sharing the same interface.  
 
 Status: 🚧 IN PROGRESS
 
 ---
 
 ## Decorator
-Dynamic behavior extension example.
+**Problem:** E-commerce system needs to dynamically add behavior to price calculations (discounts, taxes, shipping).  
+**Pattern:** Decorator  
+**Solution:** Dynamically wrap price components to add behavior without changing core classes.  
 
 Status: 🚧 TODO
 
 ---
 
 ## Facade
-Simplified interface for complex subsystems.
+**Problem:** Client application needs to interact with multiple complex subsystems (authentication, payment, notifications).  
+**Pattern:** Facade  
+**Solution:** Provide a unified API that simplifies interactions with internal subsystems.  
 
 Status: 🚧 TODO
 
 ---
 
 ## Flyweight
-Memory optimization through shared object instances.
+**Problem:** Multiplayer game server needs to manage thousands of character objects efficiently.  
+**Pattern:** Flyweight  
+**Solution:** Share immutable character states among multiple instances to reduce memory usage.  
 
 Status: 🚧 TODO
 
 ---
 
 ## Proxy
-Controlled access to target objects.
+**Problem:** Document management system requires access control and lazy loading for large files.  
+**Pattern:** Proxy  
+**Solution:** Introduce a proxy responsible for authorization and deferred loading.  
 
 Status: 🚧 TODO
 
@@ -117,80 +136,99 @@ Status: 🚧 TODO
 # Behavioral Patterns
 
 ## Interpreter
-Service that retrieves GitHub repository issues and converts results into JSON.
+**Problem:** GitHub analytics service needs to interpret custom queries to filter repositories.  
+**Pattern:** Interpreter  
+**Solution:** Implement a parser capable of converting expressions into executable rules.  
 
 Status: 🚧 TODO
 
 ---
 
 ## Chain of Responsibility
-Request processing chain used to retrieve GitHub repository issues.
+**Problem:** Sequential request processing with flexible handling.  
+**Pattern:** Chain of Responsibility  
+**Solution:** Implementation that processes requests in a chain, used to retrieve GitHub issues.  
 
 Status: ✅ DONE
 
 ---
 
 ## Command
-Command Pattern applied to distributed transaction workflows in microservices.
+**Problem:** Distributed microservices need to execute transactions in an encapsulated way.  
+**Pattern:** Command  
+**Solution:** Command that encapsulates actions across microservices.  
 
 Status: ✅ DONE
 
 ---
 
 ## Iterator
-Sequential collection traversal example.
+**Problem:** Reporting system needs to traverse internal collections in a standardized way.  
+**Pattern:** Iterator  
+**Solution:** Provides a unified iteration interface, independent of the collection implementation.  
 
 Status: 🚧 TODO
 
 ---
 
 ## Mediator
-Chat application using Server Push communication.
+**Problem:** Chat application needs to manage communication between multiple users without direct coupling.  
+**Pattern:** Mediator  
+**Solution:** Central mediator responsible for routing messages among participants.  
 
 Status: 🚧 IN PROGRESS
 
 ---
 
 ## Memento
-Object state recovery implementation.
+**Problem:** Text editor requires undo/redo functionality without exposing internal object state.  
+**Pattern:** Memento  
+**Solution:** Store snapshots of state that can be restored when needed.  
 
 Status: 🚧 TODO
 
 ---
 
 ## Observer
-Job platform where:
-
-- Recruiters receive notifications about new resumes
-- Professionals receive notifications about job opportunities
+**Problem:** Recruitment platform needs to notify recruiters and candidates in real time.  
+**Pattern:** Observer  
+**Solution:** Subscribers automatically receive notifications whenever relevant events occur.  
 
 Status: 🚧 IN PROGRESS
 
 ---
 
 ## State
-Object behavior based on internal state.
+**Problem:** Order processing system changes behavior depending on order state.  
+**Pattern:** State  
+**Solution:** Encapsulate behavior in specific state classes (e.g., Pending, Paid, Delivered).  
 
 Status: 🚧 TODO
 
 ---
 
 ## Strategy
-Dynamic algorithm selection implementation.
+**Problem:** Logistics platform needs to support multiple shipping calculation strategies.  
+**Pattern:** Strategy  
+**Solution:** Encapsulate shipping algorithms and switch dynamically based on business rules.  
 
 Status: 🚧 TODO
 
 ---
 
 ## Template Method
-Algorithm skeleton implementation example.
+**Problem:** Different report generators share workflows but have specific formatting steps.  
+**Pattern:** Template Method  
+**Solution:** Define the algorithm skeleton and allow subclasses to customize individual steps.  
 
 Status: 🚧 TODO
 
 ---
 
 ## Visitor
-Operation separation from object structure.
+**Problem:** Financial platform needs to apply multiple operations to transaction objects without modifying their classes.  
+**Pattern:** Visitor  
+**Solution:** Separate operations from the object structure using visitor implementations.  
 
 Status: 🚧 TODO
 
@@ -199,14 +237,18 @@ Status: 🚧 TODO
 # Concurrent Patterns
 
 ## Barrier
-Thread synchronization implementation.
+**Problem:** Distributed system needs to synchronize multiple threads before continuing execution.  
+**Pattern:** Barrier  
+**Solution:** Force all threads to wait at a synchronization point before proceeding.  
 
 Status: 🚧 TODO
 
 ---
 
 ## Active Object
-Asynchronous method execution pattern.
+**Problem:** High-concurrency notification system needs to process requests asynchronously without blocking the main thread.  
+**Pattern:** Active Object  
+**Solution:** Encapsulate asynchronous execution behind a scheduler and worker thread abstraction.  
 
 Status: 🚧 TODO
 
@@ -227,5 +269,5 @@ Status: 🚧 TODO
 - Study software architecture patterns
 - Practice enterprise application design
 - Explore reusable design solutions
-- Apply patterns to real-world scenarios
+- Apply patterns in real-world scenarios
 - Improve object-oriented design skills
