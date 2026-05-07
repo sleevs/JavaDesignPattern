@@ -1,97 +1,231 @@
+# Java Design Patterns Demonstration
 
-## Demonstration of Design Pattern implelemnted in Java 
+This repository contains practical implementations of classical software design patterns using Java.
 
-Design pattern are beneficial because they describe a problem that occurs repeatedly
-and explain the solution to the problem in a way that can be used many time over.
+The goal of this project is to study reusable software architecture solutions and demonstrate how design patterns can be applied to real-world scenarios such as APIs, distributed systems, notifications, and enterprise applications.
 
-The study of patterns can inspire designes to come up with new and unique ideas
-and format captures knowledge and documents best practices for a domain. 
+---
 
-Pattern are not the silver bullet but they can be combined and used in concert to solve large problems that cannot be solved with just one pattern .
+## About Design Patterns
 
-### Creational patterns
+Design patterns are reusable solutions to recurring software design problems.
 
-  -  Factory Method 
-      
-     [In this example a logistic API was built  which implements a fare calculator.](https://github.com/sleevs/JavaDesignPattern/tree/master/jsn-factory-method) 
-  
-  
-  -  Abstract factory
-  
-     [In this example, an payment API was created.](https://github.com/sleevs/JavaDesignPattern/tree/master/jsn-abstract-factory)  
-  
-  -  Builder 
-     
-     [The example is a notification API which defines several ways to notify.](https://github.com/sleevs/JavaDesignPattern/tree/master/jsn-builder)
-  
-  -  Prototype 
-   
-     [This is example of catalog of marketing place application.](https://github.com/sleevs/JavaDesignPattern/tree/master/jsn-prototype)
-  
-  -  Singleton - TODO
+They help developers:
+- Improve code maintainability
+- Reduce coupling
+- Increase flexibility
+- Reuse proven architectural solutions
+- Communicate software architecture more effectively
 
-### Structural patterns
+This repository explores both theoretical concepts and practical implementations.
 
-  -  Adapter - TODO
-  
-  -  Bridge - TODO
-  
-  -  Composite -DOING
+---
 
-     [Demo to manager project API which each component has a sub-elements representing a structure of project sach as project , analysis ,tasks and actions respectively .](https://github.com/sleevs/JavaDesignPattern/tree/master/jsn-composite) 
+# Creational Patterns
 
-  
-  -  Decorator - TODO
-  
-  -  Facade - TODO
-  
-  -  Flyweight - TODO
-  
-  -  Proxy - TODO
+## Factory Method
+Logistics API implementing fare calculation strategies.
 
-### Behavioral patterns
+Status: ✅ DONE
 
-  -  Interpreter - TODO
-      serviço que recupera todas as issues de um determinado repositório no github e retorna um JSON
-  -  Chain of responsibility DONE
-    
-     [In this example implements a chain of requests to retrieve issues from a GitHub repository](https://github.com/sleevs/jsn-issues-analysis)
-  
-  -  Command - DONE
-  
-      [This is a example of implementation of Command Pattern as component for a solution to a microservice in distributed transactions.](https://github.com/sleevs/Saga-Pattern)
-  
-  -  Iterator - TODO
-  
-  -  Mediator - DOING
+---
 
-     [This is a example of implementation of Mediator Pattern to solution of a Chat App with Server Push Technology.](https://github.com/sleevs/JavaDesignPattern)
+## Abstract Factory
+Payment API demonstrating creation of related payment objects.
 
-    
-  
-  -  Memento - TODO
+Status: ✅ DONE
 
+---
 
-  -  Observer - DOING 
+## Builder
+Notification API supporting multiple notification configurations.
 
-      [This is a example of implementation of Observer Pattern to Job app which job recruiter receive notification about news professionals resumes and Professionals receive notification about news opportunities of job.](https://github.com/sleevs/JavaDesignPattern/tree/master/jsn-observer)
+Status: ✅ DONE
 
-  
-  -  State - TODO
-  
-  -  Strategy - TODO
-  
-  -  Template method - TODO
-  
-  -  Visitor - TODO
+---
 
+## Prototype
+Marketplace catalog cloning example.
 
+Status: ✅ DONE
 
+---
 
+## Singleton
+Global shared instance implementation.
 
-  ### Concurrent patterns
+Status: 🚧 TODO
 
-   -  Barrier - TODO
-   -  Active objects - TODO
-   
-  
+---
+
+# Structural Patterns
+
+## Adapter
+Compatibility layer between incompatible interfaces.
+
+Status: 🚧 TODO
+
+---
+
+## Bridge
+Decouples abstraction from implementation.
+
+Status: 🚧 TODO
+
+---
+
+## Composite
+Project management API representing hierarchical structures:
+
+- Project
+- Analysis
+- Tasks
+- Actions
+
+Status: 🚧 IN PROGRESS
+
+---
+
+## Decorator
+Dynamic behavior extension example.
+
+Status: 🚧 TODO
+
+---
+
+## Facade
+Simplified interface for complex subsystems.
+
+Status: 🚧 TODO
+
+---
+
+## Flyweight
+Memory optimization through shared object instances.
+
+Status: 🚧 TODO
+
+---
+
+## Proxy
+Controlled access to target objects.
+
+Status: 🚧 TODO
+
+---
+
+# Behavioral Patterns
+
+## Interpreter
+Service that retrieves GitHub repository issues and converts results into JSON.
+
+Status: 🚧 TODO
+
+---
+
+## Chain of Responsibility
+Request processing chain used to retrieve GitHub repository issues.
+
+Status: ✅ DONE
+
+---
+
+## Command
+Command Pattern applied to distributed transaction workflows in microservices.
+
+Status: ✅ DONE
+
+---
+
+## Iterator
+Sequential collection traversal example.
+
+Status: 🚧 TODO
+
+---
+
+## Mediator
+Chat application using Server Push communication.
+
+Status: 🚧 IN PROGRESS
+
+---
+
+## Memento
+Object state recovery implementation.
+
+Status: 🚧 TODO
+
+---
+
+## Observer
+Job platform where:
+
+- Recruiters receive notifications about new resumes
+- Professionals receive notifications about job opportunities
+
+Status: 🚧 IN PROGRESS
+
+---
+
+## State
+Object behavior based on internal state.
+
+Status: 🚧 TODO
+
+---
+
+## Strategy
+Dynamic algorithm selection implementation.
+
+Status: 🚧 TODO
+
+---
+
+## Template Method
+Algorithm skeleton implementation example.
+
+Status: 🚧 TODO
+
+---
+
+## Visitor
+Operation separation from object structure.
+
+Status: 🚧 TODO
+
+---
+
+# Concurrent Patterns
+
+## Barrier
+Thread synchronization implementation.
+
+Status: 🚧 TODO
+
+---
+
+## Active Object
+Asynchronous method execution pattern.
+
+Status: 🚧 TODO
+
+---
+
+# Stack
+
+- Java
+- Maven
+- Spring Boot (selected examples)
+- REST APIs
+- GitHub API
+
+---
+
+# Goals
+
+- Study software architecture patterns
+- Practice enterprise application design
+- Explore reusable design solutions
+- Apply patterns to real-world scenarios
+- Improve object-oriented design skills
